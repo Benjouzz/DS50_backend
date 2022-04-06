@@ -2,10 +2,12 @@ import os
 import sys
 import csv
 import json
-import sqlite3
-import pprint
-import random
+import pytz
+import argparse
+import datetime
+import mysql.connector
 from enum import Enum
+
 
 
 class ConnectionWrapper (object):
@@ -38,6 +40,29 @@ class SQLiteConnectionWrapper (object):
 	def close(self):
 		self.db.close()
 
+class MySQLConnectionWrapper (object):
+	def __init__(self, host, database, user, password):
+		self.db = mysql.connector.connect(user=user, password=password, host=host, database=database)
+		self.cursor = self.db.cursor()
+
+	def execute(self, query):
+		try:
+			self.cursor.execute(query)
+		except Exception as e:
+			print("\nERROR :", e)
+			with open("faultyquery.sql", "w", encoding="utf-8") as f:
+				f.write("-- " + str(e) + "\n")
+				f.write(query)
+
+	def commit(self):
+		self.db.commit()
+		self.cursor.close()
+		self.cursor = self.db.cursor()
+
+	def close(self):
+		self.cursor.close()
+		self.db.close()
+
 
 
 
@@ -46,7 +71,6 @@ class Table (object):
 	   Needs to be subclassed once for each table"""
 	def __init__(self, name):
 		self.name = name
-		self.filters = []
 		self.truncation = None
 		self._columns = self.columns()
 		self._dependencies = set()
@@ -91,105 +115,42 @@ class Table (object):
 		self.truncation = truncation
 
 
-class Filter (object):
-	"""Base class for row filters"""
-	def resolve(self, table, processes, dirname):
-		"""Apply the filter and return the filtered row indices
-		   - int[] table    : table object to apply the filter onto
-		   - dict processes : all table import process objects
-		   - str dirname    : dataset root directory"""
-		NotImplemented
-
-
-class RandomFilter (Filter):
-	"""Selects some amount of rows at random"""
-	def __init__(self, num_select):
-		self.num_select = num_select
-
-	def resolve(self, table, processes, dirname):
-		selfprocess = processes[table.name]
-
-		# Optimisation : we need to read the entire file first to count the rows and get
-		# the row indices to sample from. If some row indices have already been selected,
-		# we can just sample from them
-		if selfprocess.rows_to_import is not None:
-			return set(random.sample(tuple(selfprocess.rows_to_import), self.num_select))
-		else:
-			available_rows = []
-			for rowindex, row in table.get(dirname, processes, selfprocess.rows_to_import):
-				available_rows.append(rowindex)
-			return set(random.sample(available_rows, self.num_select))
-
-	def __repr__(self):
-		return f"{self.__class__.__name__}({repr(self.num_select)})"
-
-
-class MatchingFilter (Filter):
-	"""Selects only rows that match any value in a foreign column.
-	   - str self_column    : column to filter on
-	   - str foreign_table  : name of the foreign_table to match
-	   - str foreign_column : only the rows that match any value in this column of the
-	                          foreign table will be kept"""
-	def __init__(self, self_column, foreign_table, foreign_column):
-		self.self_column = self_column
-		self.foreign_table = foreign_table
-		self.foreign_column = foreign_column
-
-	def resolve(self, table, processes, dirname):
-		self_process = processes[table.name]
-		foreign_process = processes[self.foreign_table]
-		# Need to resolve the foreign table filters first to avoid keeping useless rows
-		foreign_process.resolve_filters(dirname, processes)
-
-		# Get all relevant values in the foreign column
-		foreign_selected = set()
-		for rowindex, row in foreign_process.table.get(dirname, processes, foreign_process.rows_to_import):
-			#print(f"SELECT {type(row[self.foreign_column])} : {row[self.foreign_column]}")
-			foreign_selected.add(row[self.foreign_column])
-
-		# Only keep the row indices where the local column matches any value of the foreign column
-		self_selected = set()
-		for rowindex, row in table.get(dirname, processes, self_process.rows_to_import):
-			#print(f"CHECK {type(row[self.self_column])} :", rowindex, row[self.self_column], row[self.self_column] in foreign_selected)
-			if row[self.self_column] in foreign_selected:
-				self_selected.add(rowindex)
-
-		return self_selected
-
-	def __repr__(self):
-		return f"{self.__class__.__name__}({repr(self.self_column)}, {repr(self.foreign_table)}, {repr(self.foreign_column)})"
-
-
-
 # DB type aliases
-Int = "INTEGER"
-String = "TEXT"
-Real = "REAL"
-Bool = "BOOLEAN"
+Int = ("INTEGER", "INTEGER")
+String = ("TEXT", "TINYTEXT")
+Str = lambda size=None: ("TEXT", f"VARCHAR({size if size is not None else 255})")
+Text = ("TEXT", "TEXT")
+Float = ("FLOAT", "FLOAT")
+Bool = ("BOOLEAN", "BOOLEAN")
+Datetime = ("DATETIME", "DATETIME")
 
 
 
 def convert_value(value, type):
 	"""Convert a value from the base file to a python representation"""
-	if type == Int:
+	if type[0] == "INTEGER":
 		return int(value) if value != "" else None
-	elif type == Real:
+	elif type[0] == "FLOAT":
 		return float(value) if value != "" else None
-	elif type == Bool:
+	elif type[0] == "BOOLEAN":
 		return bool(value) if value != "" else None
-	elif type == String:
+	elif type[0] == "TEXT":
 		return value
+	elif type[0] == "DATETIME":
+		return datetime.datetime.strptime(value, "%a %b %d %H:%M:%S %z %Y").astimezone(pytz.utc) if value != "" else None
 
 def convert_insert(value, type):
 	"""Convert a value to its SQL representation"""
 	if value is None:
 		return "NULL"
-	elif type in (Int, Real):
+	elif type[0] in ("INTEGER", "FLOAT"):
 		return str(value)
-	elif type == Bool:
+	elif type[0] == "BOOLEAN":
 		return "TRUE" if value else "FALSE"
-	elif type == String:
-		return "'" + value.replace("'", "''") + "'"
+	elif type[0] == "TEXT":
+		return "'" + value.replace("\\", r"\\").replace("'", r"\'").replace("\n", r"\n").replace("\t", r"\t") + "'"
+	elif type[0] == "DATETIME":
+		return "'" + value.strftime("%Y-%m-%d %H:%M:%S") + "'"
 
 def read_json_rows(filename, selectedrows=None, truncate=None):
 	"""Decode JSON rows from the given file
@@ -203,11 +164,26 @@ def read_json_rows(filename, selectedrows=None, truncate=None):
 			if selectedrows is None or i in selectedrows:
 				yield (i, json.loads(row))
 
+def read_csv_rows(filename, selectedrows=None, truncate=None):
+	"""Decode CSV rows from the given file
+	   - str filename       : file to read
+	   - int[] selectedrows : row indices to keep (if left to None, select all)
+	   - int truncate       : limit on the number of rows to read (if left to None, select all)"""
+	with open(filename, "r", encoding="utf-8") as f:
+		reader = csv.DictReader(f)
+		for i, row in enumerate(reader):
+			if truncate is not None and i >= truncate:
+				break
+			if selectedrows is None or i in selectedrows:
+				yield (i, row)
+
 # Table names enumeration
 class TableName:
 	Book = "BOOK"
 	Work = "WORK"
 	Author = "AUTHOR"
+	Interaction = "INTERACTION"
+	Review = "REVIEW"
 
 	Wrote = "WROTE"
 
@@ -217,20 +193,20 @@ class TableName:
 class BookTable (Table):
 	def columns(self):
 		return {
-			#name                 type    pk     fk
-			"book_id":           (Int,    True,  None),
-			"country_code":      (String, False, None),
-			"description":       (String, False, None),
-			"format":            (String, False, None),
-			"image_url":         (String, False, None),
-			"is_ebook":          (Bool,   False, None),
-			"language_code":     (String, False, None),
-			"num_pages":         (Int,    False, None),
-			"publication_year":  (Int,    False, None),
-			"publication_month": (Int,    False, None),
-			"publisher":         (String, False, None),
-			"title":             (String, False, None),
-			"work_id":           (String, False, TableName.Work)}
+			#name                 type      pk     fk
+			"book_id":           (Int,      True,  None),
+			"country_code":      (Str(2),   False, None),
+			"description":       (Text,     False, None),
+			"format":            (String,   False, None),
+			"image_url":         (String,   False, None),
+			"is_ebook":          (Bool,     False, None),
+			"language_code":     (Str(5),   False, None),
+			"num_pages":         (Int,      False, None),
+			"publication_year":  (Int,      False, None),
+			"publication_month": (Int,      False, None),
+			"publisher":         (String,   False, None),
+			"title":             (Str(500), False, None)}
+			#"work_id":           (String, False, TableName.Work)
 
 	def get(self, dirname, processes, selectedrows=None):
 		for rowindex, row in read_json_rows(os.path.join(dirname, "goodreads_books.json"), selectedrows, self.truncation):
@@ -243,8 +219,11 @@ class BookTable (Table):
 class AuthorTable (Table):
 	def columns(self):
 		return {
-			"author_id": (Int,    True,  None),
-			"name":      (String, False, None)}
+			"author_id":          (Int,    True,  None),
+			"name":               (String, False, None),
+			"average_rating":     (Float,  False, None),
+			"ratings_count":      (Int,    False, None),
+			"text_reviews_count": (Int,    False, None)}
 
 	def get(self, dirname, processes, selectedrows=None):
 		for rowindex, row in read_json_rows(os.path.join(dirname, "goodreads_book_authors.json"), selectedrows, self.truncation):
@@ -274,17 +253,67 @@ class WroteTable (Table):
 					        "role":      convert_value(element["role"], self.columns()["role"][0])})
 				rowindex += 1
 
+class InteractionTable (Table):
+	def columns(self):
+		return {
+			"user_id":     (Str(32), True,  None),
+			"book_id":     (Int,     True,  TableName.Book),
+			"is_read":     (Bool,    False, None),
+			"rating":      (Int,     False, None),
+			"is_reviewed": (Bool,    False, None)}
+
+	def get(self, dirname, processes, selectedrows=None):
+		usermap = {}
+		for rowindex, row in read_csv_rows(os.path.join(dirname, "user_id_map.csv")):
+			usermap[int(row["user_id_csv"])] = row["user_id"]
+
+		bookmap = {}
+		for rowindex, row in read_csv_rows(os.path.join(dirname, "book_id_map.csv")):
+			bookmap[int(row["book_id_csv"])] = int(row["book_id"])
+
+		for rowindex, row in read_csv_rows(os.path.join(dirname, "goodreads_interactions.csv"), selectedrows, self.truncation):
+			importrow = {}
+			for colname, (type, pk, fk) in self.columns().items():
+				importrow[colname] = convert_value(row[colname], type)
+
+			importrow["user_id"] = usermap[int(importrow["user_id"])]
+			importrow["book_id"] = usermap[importrow["book_id"]]
+			yield (rowindex, importrow)
+
+class ReviewTable (Table):
+	def columns(self):
+		return {
+			"review_id":   (Str(32),  True, None),
+			"user_id":     (Str(32),  False, None),
+			"book_id":     (Int,      False, TableName.Book),
+			"rating":      (Int,      False, None),
+			"review_text": (Text,     False, None),
+			"date_added":  (Datetime, False, None),
+			"started_at":  (Datetime, False, None),
+			"n_votes":     (Int,      False, None),
+			"n_comments":  (Int,      False, None)}
+
+	def get(self, dirname, processes, selectedrows=None):
+		for rowindex, row in read_json_rows(os.path.join(dirname, "goodreads_reviews_dedup.json"), selectedrows, self.truncation):
+			importrow = {}
+			for colname, (type, pk, fk) in self.columns().items():
+				importrow[colname] = convert_value(row[colname], type)
+			yield (rowindex, importrow)
+
+
 
 # Map the table names to their related table object
 table_classes = {
 	TableName.Book: BookTable(TableName.Book),
 	TableName.Wrote: WroteTable(TableName.Wrote),
 	TableName.Author: AuthorTable(TableName.Author),
+	TableName.Interaction: InteractionTable(TableName.Interaction),
+	TableName.Review: ReviewTable(TableName.Review),
 }
 
 
 # Insertions to commit at once
-BATCH_SIZE = 200
+BATCH_SIZE = 1000
 
 
 
@@ -295,29 +324,20 @@ class TableImport (object):
 	def __init__(self, connection, table):
 		self.connection = connection
 		self.table = table
-		self.resolved_filters = False
 		self.rows_to_import = None
 		self.imported_keys = set()
 
 		if self.table.truncation is not None:
 			self.rows_to_import = set(range(self.table.truncation))
 
-	def resolve_filters(self, processes, dirname):
-		"""Resolve the filters on the associated table before importing"""
-		if not self.resolved_filters:  # Only apply them once
-			for filter in self.table.filters:
-				print(f"Resolving filter {repr(filter)} on process {self.table.name}")
-				selected_keys = filter.resolve(self.table, processes, dirname)
-				if self.rows_to_import is None:
-					self.rows_to_import = set(selected_keys)
-				else:  # Intersection with the superset
-					self.rows_to_import &= selected_keys
-			self.resolved_filters = True
-
 	def run(self, processes, dirname):
 		"""Run the import process (table creation and data insertion)"""
 		self.create()
 		self.insert(processes, dirname)
+
+	def drop(self):
+		connection.execute(f"DROP TABLE IF EXISTS {self.table.name};")
+		connection.commit()
 
 	def create(self):
 		"""Drop the table if it already exists, and create it"""
@@ -327,7 +347,7 @@ class TableImport (object):
 		constraints += f"PRIMARY KEY ({','.join(self.table.primary_key())}),\n"
 
 		for colname, (type, primary_key, foreign_key) in self.table.columns().items():			
-			columns += f"{colname} {type},\n"
+			columns += f"{colname} {type[1]},\n"
 
 			if foreign_key is not None:
 				if foreign_key not in table_classes:
@@ -341,15 +361,13 @@ class TableImport (object):
 					elif len(foreign_pk) > 1:
 						print(f"WARNING : Column {colname} in table {self.table.name} references the composite primary key of table {foreign_key}. The foreign key constraint has been dropped")
 					else:
-						constraints += f"FOREIGN KEY ({colname}) REFERENCES {foreign_key}({foreign_pk}),\n"
+						constraints += f"FOREIGN KEY ({colname}) REFERENCES {foreign_key}({foreign_pk[0]}),\n"
 
 		if constraints != "":
 			constraints = constraints.rstrip("\n,")
 		else:
 			columns = columns.rstrip("\n,")
 
-		# Let’s make the hopeful guess there is nothing dangerous in our data for now
-		connection.execute(f"DROP TABLE IF EXISTS {self.table.name};")
 		connection.execute(f"CREATE TABLE {self.table.name} ({columns} {constraints});")
 		connection.commit()
 
@@ -363,28 +381,59 @@ class TableImport (object):
 		else:
 			print(f"{len(self.rows_to_import)} rows to import")
 
+		foreign_checks = {colname: processes[tablename] for colname, (type, pk, tablename) in self.table.columns().items() if tablename is not None}
+		dropped = 0
+		batchvalues = []
 		for rowindex, row in self.table.get(dirname, processes, self.rows_to_import):
+			if rowindex == 0:
+				column_names = []
+				for colname, colvalue in row.items():
+					column_names.append(colname)
+
 			key = self.table.extract_key(row)
 			if key in self.imported_keys:
 				print(f"\rWARNING : Duplicate primary key {key} in table {self.table.name}. The row has been dropped")
+				dropped += 1
 				continue
 
-			column_names = []
+			check_fail = False
+			for colname, process in foreign_checks.items():
+				if (row[colname], ) not in process.imported_keys:
+					#print(f"\rWARNING : Foreign key {row[colname]} in column {colname} of table {self.table.name} has no target in table {process.table.name}. The row has been dropped")
+					check_fail = True
+			if check_fail:
+				dropped += 1
+				continue
+
+
 			column_values = []
 			for colname, colvalue in row.items():
-				column_names.append(colname)
 				column_values.append(convert_insert(colvalue, columns[colname][0]))
+			batchvalues.append("(" + ",".join(column_values) + ")")
 
-			query = f"INSERT INTO {self.table.name} ({','.join(column_names)}) VALUES ({','.join(column_values)});";
-			connection.execute(query)
-
-			imported += 1
-			self.imported_keys.add(key)
-			if imported % BATCH_SIZE == 0:
+			if len(batchvalues) >= BATCH_SIZE:
+				# Let’s make the hopeful guess there is nothing dangerous in our data for now
+				valuestring = ',\n'.join(batchvalues)
+				query = f"INSERT INTO {self.table.name} ({','.join(column_names)}) VALUES {valuestring};";
+				connection.execute(query)
 				connection.commit()
+
+				imported += len(batchvalues)
 				print(f"\r{imported} rows inserted", end="")
-		connection.commit()
+				batchvalues.clear()
+
+			self.imported_keys.add(key)
+		
+		if len(batchvalues) > 0:
+			valuestring = ',\n'.join(batchvalues)
+			query = f"INSERT INTO {self.table.name} ({','.join(column_names)}) VALUES {valuestring};";
+			connection.execute(query)
+			connection.commit()
+			imported += len(batchvalues)
+			batchvalues.clear()
+
 		print(f"\r{imported} rows inserted")
+		print(f"{dropped} rows dropped")
 
 	def selected(self, rowindex):
 		"""Check whether the given rowindex is going to be imported"""
@@ -408,36 +457,39 @@ def resolve_import_order(processes):
 	return order
 
 
-######### Row filters definition
 
-table_classes[TableName.Book].truncate(1000)
-table_classes[TableName.Book].add_filters(
-	RandomFilter(20))
-
-table_classes[TableName.Wrote].add_filters(
-	MatchingFilter("book_id", TableName.Book, "book_id"))
-
-table_classes[TableName.Author].add_filters(
-	MatchingFilter("author_id", TableName.Wrote, "author_id"))
 
 
 ########## Main script
 
 if __name__ == "__main__":
-	input_directory = sys.argv[1]
-	connection = SQLiteConnectionWrapper("goodreads.db")
+	parser = argparse.ArgumentParser()
+	parser.add_argument("dataset_directory", help="Directory where the dataset files are contained")
+	parser.add_argument("-s", "--host", help="MySQL server address", default="127.0.0.1")
+	parser.add_argument("-u", "--user", help="MySQL database user name", default="")
+	parser.add_argument("-p", "--password", help="MySQL database user password", default="")
+	parser.add_argument("-d", "--database", help="Target MySQL database name")
+	parser.add_argument("-t", "--truncate", type=int, help="Only keep this number of rows in each table", default=0)
+	args = parser.parse_args()
+
+	input_directory = args.dataset_directory
+	connection = MySQLConnectionWrapper(args.host, args.database, args.user, args.password)
+
+	if args.truncate > 0:
+		for table in table_classes.values():
+			table.truncate(args.truncate)
 
 	processes = {}
 	for tablename, table in table_classes.items():
 		processes[tablename] = TableImport(connection, table)
 
-	print("\n------ Resolving filters")
-	for tablename, process in processes.items():
-		process.resolve_filters(processes, input_directory)
-
 	print("\n------ Resolving import order")
 	import_order = resolve_import_order(processes)
 	print(f"Import order : {', '.join(import_order)}")
+
+	print("\n------ Dropping existing tables")
+	for tablename in reversed(import_order):
+		processes[tablename].drop()
 
 	print("\n------ Importing data")
 	for tablename in import_order:
