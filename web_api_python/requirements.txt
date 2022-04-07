@@ -1,0 +1,6 @@
+werkzeug==2.0.3
+flask
+flask_restplus
+flask_cors
+mysql-connector-python
+pandas
