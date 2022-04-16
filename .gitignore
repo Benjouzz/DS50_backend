@@ -1,5 +1,5 @@
 # Data
+data/excel/
+data/raw/
 .gz
-.xlsx
-
 web_api_python/api/Lib/
