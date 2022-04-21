@@ -2,4 +2,4 @@
 data/excel/
 data/raw/
 .gz
-web_api_python/api/Lib/
+api/env/
