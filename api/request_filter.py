@@ -1,10 +1,10 @@
-import mysql.connector
-from mysql.connector import Error
-import pandas as pd
-
+from filtering import ContentBasedFiltering
 
 def getReco():
-    return None
+    filtering = ContentBasedFiltering()
+    filtering.setFilterBase(filter_base=27421523)
+    filtering.loadData()
+    filtering.processData()
+    filtering.filter()
 
-if __name__ == '__main__':
-    print(getReco())
+    return
