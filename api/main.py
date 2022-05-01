@@ -6,6 +6,7 @@ flask.helpers._endpoint_from_view_func = flask.scaffold._endpoint_from_view_func
 # main.py
 from flask import Flask, request
 from request_data import *
+from request_filter import *
 from flask_restplus import Api, Resource
 from flask_cors import CORS, cross_origin
 import json
@@ -50,10 +51,5 @@ class Work(Resource):
 class Interaction(Resource):
     def get(self):
         return getFirst1000Interactions()
-
-@api.route('/apis/DS50/Wrote/First1000')
-class Wrote(Resource):
-    def get(self):
-        return getFirst1000Wrotes()
 
 app.run()
