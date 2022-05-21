@@ -1,0 +1,2601 @@
+{
+    "0": {
+        "title": "fiction",
+        "names": [
+            "fiction:n:fiction.n.01",
+            "imaginary:s:fanciful.s.02",
+            "story:n:narrative.n.01",
+            "story:n:story.n.02",
+            "fic:n"
+        ],
+        "sup": null,
+        "sub": [
+            1,
+            7,
+            8,
+            9,
+            11,
+            12,
+            13,
+            14,
+            17,
+            18,
+            19,
+            20,
+            22,
+            25,
+            26,
+            29,
+            34,
+            44,
+            48
+        ],
+        "lvl": 0,
+        "path": [
+            0
+        ],
+        "fav": false
+    },
+    "1": {
+        "title": "folklore",
+        "names": [
+            "folklore:n:folklore.n.01",
+            "folktale:n:folktale.n.01"
+        ],
+        "sup": 0,
+        "sub": [
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "lvl": 1,
+        "path": [
+            0,
+            1
+        ],
+        "fav": false
+    },
+    "2": {
+        "title": "legend",
+        "names": [
+            "legend:n:legend.n.01",
+            "myth:n:myth.n.01",
+            "mythology:n:mythology.n.01",
+            "mythology:n:mythology.n.02",
+            "mythological:s:fabulous.s.02"
+        ],
+        "sup": 1,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            1,
+            2
+        ],
+        "fav": false
+    },
+    "3": {
+        "title": "fairy tale",
+        "names": [
+            "tale:n:narrative.n.01+fairy:n:fairy.n.01",
+            "fairytale:n:fairytale.n.01"
+        ],
+        "sup": 1,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            1,
+            3
+        ],
+        "fav": false
+    },
+    "4": {
+        "title": "parable",
+        "names": [
+            "parable:n:fable.n.02",
+            "parable:n:parable.n.02"
+        ],
+        "sup": 1,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            1,
+            4
+        ],
+        "fav": false
+    },
+    "5": {
+        "title": "fable",
+        "names": [
+            "fable:n:fable.n.02"
+        ],
+        "sup": 1,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            1,
+            5
+        ],
+        "fav": false
+    },
+    "6": {
+        "title": "urban legend",
+        "names": [
+            "legend:n:legend.n.01+urban:a:urban.a.01",
+            "legend:n:legend.n.01+urban:a:urban.a.02"
+        ],
+        "sup": 1,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            1,
+            6
+        ],
+        "fav": false
+    },
+    "7": {
+        "title": "children",
+        "names": [
+            "child:n:child.n.01",
+            "child:n:child.n.02",
+            "child:n:child.n.01",
+            "child:n:child.n.02"
+        ],
+        "sup": 0,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            0,
+            7
+        ],
+        "fav": true
+    },
+    "8": {
+        "title": "romance",
+        "names": [
+            "romance:n:love_affair.n.01",
+            "romance:n:love_story.n.01",
+            "romance:v:romance.v.02",
+            "romantic:n:romantic.n.01",
+            "romantic:s:amatory.s.01"
+        ],
+        "sup": 0,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            0,
+            8
+        ],
+        "fav": true
+    },
+    "9": {
+        "title": "fantasy",
+        "names": [
+            "fantasy:n:fantasy.n.01",
+            "fantasy:n:fantasy.n.02"
+        ],
+        "sup": 0,
+        "sub": [
+            10
+        ],
+        "lvl": 1,
+        "path": [
+            0,
+            9
+        ],
+        "fav": true
+    },
+    "10": {
+        "title": "epic",
+        "names": [
+            "epic:n:epic_poem.n.01",
+            "epic:a:epic.a.02",
+            "heroic:n:heroic_verse.n.01",
+            "heroic:s:epic.s.01",
+            "heroic:a:heroic.a.02",
+            "heroic:s:heroic.s.03"
+        ],
+        "sup": 9,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            9,
+            10
+        ],
+        "fav": false
+    },
+    "11": {
+        "title": "realism",
+        "names": [
+            "realism:n:realism.n.01",
+            "realism:n:reality.n.02",
+            "realism:n:naturalism.n.02",
+            "realistic:a:realistic.a.01",
+            "realistic:s:naturalistic.s.01"
+        ],
+        "sup": 0,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            0,
+            11
+        ],
+        "fav": true
+    },
+    "12": {
+        "title": "satire",
+        "names": [
+            "satire:n:sarcasm.n.01"
+        ],
+        "sup": 0,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            0,
+            12
+        ],
+        "fav": true
+    },
+    "13": {
+        "title": "psychological",
+        "names": [
+            "psychological:s:psychological.s.01"
+        ],
+        "sup": 0,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            0,
+            13
+        ],
+        "fav": true
+    },
+    "14": {
+        "title": "thriller",
+        "names": [
+            "thriller:n:thriller.n.01",
+            "suspense:n:suspense.n.01",
+            "suspense:n:suspense.n.03"
+        ],
+        "sup": 0,
+        "sub": [
+            15,
+            16
+        ],
+        "lvl": 1,
+        "path": [
+            0,
+            14
+        ],
+        "fav": true
+    },
+    "15": {
+        "title": "legal thriller",
+        "names": [
+            "thriller:n:thriller.n.01+legal:a:legal.a.04"
+        ],
+        "sup": 14,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            14,
+            15
+        ],
+        "fav": false
+    },
+    "16": {
+        "title": "spy",
+        "names": [
+            "spy:n:spy.n.01",
+            "spy:v:spy.v.04",
+            "espionage:n:espionage.n.01",
+            "espionnage:n"
+        ],
+        "sup": 14,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            14,
+            16
+        ],
+        "fav": false
+    },
+    "17": {
+        "title": "political",
+        "names": [
+            "political:a:political.a.01",
+            "political:a:political.a.02"
+        ],
+        "sup": 0,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            0,
+            17
+        ],
+        "fav": true
+    },
+    "18": {
+        "title": "erotic",
+        "names": [
+            "erotic:s:erotic.s.01"
+        ],
+        "sup": 0,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            0,
+            18
+        ],
+        "fav": true
+    },
+    "19": {
+        "title": "comics",
+        "names": [
+            "comic:n",
+            "strip:n:comic_strip.n.01+comic:a",
+            "comic_strip:n:comic_strip.n.01"
+        ],
+        "sup": 0,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            0,
+            19
+        ],
+        "fav": true
+    },
+    "20": {
+        "title": "action",
+        "names": [
+            "action:n:action.n.06"
+        ],
+        "sup": 0,
+        "sub": [
+            21
+        ],
+        "lvl": 1,
+        "path": [
+            0,
+            20
+        ],
+        "fav": true
+    },
+    "21": {
+        "title": "superhero",
+        "names": [
+            "superhero:n",
+            "superman:n:demigod.n.01",
+            "captain:n:captain.n.05+america:n:united_states.n.01"
+        ],
+        "sup": 20,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            20,
+            21
+        ],
+        "fav": false
+    },
+    "22": {
+        "title": "adventure",
+        "names": [
+            "adventure:n:adventure.n.01"
+        ],
+        "sup": 0,
+        "sub": [
+            23,
+            24
+        ],
+        "lvl": 1,
+        "path": [
+            0,
+            22
+        ],
+        "fav": true
+    },
+    "23": {
+        "title": "pirate",
+        "names": [
+            "pirate:n:pirate.n.02",
+            "pirate:n:pirate.n.03"
+        ],
+        "sup": 22,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            22,
+            23
+        ],
+        "fav": false
+    },
+    "24": {
+        "title": "western",
+        "names": [
+            "western:a:western.a.02",
+            "western:n:western.n.01"
+        ],
+        "sup": 22,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            22,
+            24
+        ],
+        "fav": false
+    },
+    "25": {
+        "title": "survival",
+        "names": [
+            "survival:n:survival.n.01",
+            "survival:n:survival.n.03"
+        ],
+        "sup": 0,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            0,
+            25
+        ],
+        "fav": false
+    },
+    "26": {
+        "title": "crime",
+        "names": [
+            "crime:n:crime.n.01",
+            "crime:n:crime.n.02",
+            "mystery:n:mystery.n.01",
+            "mystery:n:mystery.n.02"
+        ],
+        "sup": 0,
+        "sub": [
+            27,
+            28
+        ],
+        "lvl": 1,
+        "path": [
+            0,
+            26
+        ],
+        "fav": true
+    },
+    "27": {
+        "title": "detective",
+        "names": [
+            "detective:n:detective.n.01",
+            "detective:n:detective.n.02",
+            "holmes:n:sherlock_holmes.n.01+sherlock:n:private_detective.n.01",
+            "sherlock:n:private_detective.n.01"
+        ],
+        "sup": 26,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            26,
+            27
+        ],
+        "fav": false
+    },
+    "28": {
+        "title": "police",
+        "names": [
+            "police:n:police.n.01"
+        ],
+        "sup": 26,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            26,
+            28
+        ],
+        "fav": false
+    },
+    "29": {
+        "title": "fantastique",
+        "names": [
+            "fantastique:n",
+            "fantastic:s:fantastic.s.04"
+        ],
+        "sup": 0,
+        "sub": [
+            30,
+            31,
+            32,
+            33
+        ],
+        "lvl": 1,
+        "path": [
+            0,
+            29
+        ],
+        "fav": true
+    },
+    "30": {
+        "title": "magic",
+        "names": [
+            "magic:n:magic.n.01",
+            "magic:s:charming.s.02"
+        ],
+        "sup": 29,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            29,
+            30
+        ],
+        "fav": false
+    },
+    "31": {
+        "title": "supernatural",
+        "names": [
+            "supernatural:n:supernatural.n.01",
+            "supernatural:a:supernatural.a.01"
+        ],
+        "sup": 29,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            29,
+            31
+        ],
+        "fav": false
+    },
+    "32": {
+        "title": "monster",
+        "names": [
+            "monster:n:monster.n.01",
+            "monster:n:giant.n.05",
+            "monster:n:freak.n.01"
+        ],
+        "sup": 29,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            29,
+            32
+        ],
+        "fav": false
+    },
+    "33": {
+        "title": "paranormal",
+        "names": [
+            "paranormal:a:extrasensory.a.01",
+            "paranormal:a:paranormal.a.02"
+        ],
+        "sup": 29,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            29,
+            33
+        ],
+        "fav": false
+    },
+    "34": {
+        "title": "science-fiction",
+        "names": [
+            "science:n:science.n.01+fiction:n:fiction.n.01",
+            "sci:n+fi:n",
+            "scifi:n"
+        ],
+        "sup": 0,
+        "sub": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43
+        ],
+        "lvl": 1,
+        "path": [
+            0,
+            34
+        ],
+        "fav": true
+    },
+    "35": {
+        "title": "futurism",
+        "names": [
+            "futurism:n:futurism.n.02",
+            "futuristic:a:futuristic.a.01"
+        ],
+        "sup": 34,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            34,
+            35
+        ],
+        "fav": false
+    },
+    "36": {
+        "title": "apocalyptic",
+        "names": [
+            "apocalyptic:s:apocalyptic.s.01",
+            "apocalyptic:a:apocalyptic.a.02",
+            "apocalypse:n:apocalypse.n.01"
+        ],
+        "sup": 34,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            34,
+            36
+        ],
+        "fav": false
+    },
+    "37": {
+        "title": "post-apocalyptic",
+        "names": [
+            "post:n+apocalyptic:s:apocalyptic.s.01",
+            "post:n+apocalyptic:a:apocalyptic.a.02"
+        ],
+        "sup": 34,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            34,
+            37
+        ],
+        "fav": false
+    },
+    "38": {
+        "title": "utopia",
+        "names": [
+            "utopia:n:utopia.n.02",
+            "utopia:n:utopia.n.03",
+            "utopia:n:utopia.n.04",
+            "utopian:a:utopian.a.01",
+            "utopian:a:utopian.a.02"
+        ],
+        "sup": 34,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            34,
+            38
+        ],
+        "fav": false
+    },
+    "39": {
+        "title": "dystopia",
+        "names": [
+            "dystopia:n:dystopia.n.01",
+            "dystopia:n:dystopia.n.02",
+            "dystopian:a:dystopian.a.01",
+            "dystopian:a:dystopian.a.02"
+        ],
+        "sup": 34,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            34,
+            39
+        ],
+        "fav": false
+    },
+    "40": {
+        "title": "cyberpunk",
+        "names": [
+            "cyberpunk:n:cyberpunk.n.02",
+            "cyberpunk:n:cyberpunk.n.03"
+        ],
+        "sup": 34,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            34,
+            40
+        ],
+        "fav": false
+    },
+    "41": {
+        "title": "steampunk",
+        "names": [
+            "steampunk:n"
+        ],
+        "sup": 34,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            34,
+            41
+        ],
+        "fav": false
+    },
+    "42": {
+        "title": "mecha",
+        "names": [
+            "mecha:n"
+        ],
+        "sup": 34,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            34,
+            42
+        ],
+        "fav": false
+    },
+    "43": {
+        "title": "space",
+        "names": [
+            "space:n:outer_space.n.01"
+        ],
+        "sup": 34,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            34,
+            43
+        ],
+        "fav": false
+    },
+    "44": {
+        "title": "horror",
+        "names": [
+            "horror:n:horror.n.01",
+            "horror:n:horror.n.02"
+        ],
+        "sup": 0,
+        "sub": [
+            45,
+            46,
+            47
+        ],
+        "lvl": 1,
+        "path": [
+            0,
+            44
+        ],
+        "fav": true
+    },
+    "45": {
+        "title": "zombie",
+        "names": [
+            "zombie:n:zombi.n.03"
+        ],
+        "sup": 44,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            44,
+            45
+        ],
+        "fav": false
+    },
+    "46": {
+        "title": "gothic",
+        "names": [
+            "gothic:s:gothic.s.05"
+        ],
+        "sup": 44,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            44,
+            46
+        ],
+        "fav": false
+    },
+    "47": {
+        "title": "lovecraftian",
+        "names": [
+            "lovecraftian:a"
+        ],
+        "sup": 44,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            0,
+            44,
+            47
+        ],
+        "fav": false
+    },
+    "48": {
+        "title": "drama",
+        "names": [
+            "drama:n:drama.n.02",
+            "drama:n:drama.n.04"
+        ],
+        "sup": 0,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            0,
+            48
+        ],
+        "fav": true
+    },
+    "49": {
+        "title": "literature",
+        "names": [
+            "literature:n:literature.n.01",
+            "literature:n:literature.n.02",
+            "lit:n:literature.n.02",
+            "literary:a:literary.a.01",
+            "literary:s:literary.s.03"
+        ],
+        "sup": null,
+        "sub": [
+            50,
+            50,
+            51,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            75,
+            77,
+            78,
+            79,
+            80,
+            81
+        ],
+        "lvl": 0,
+        "path": [
+            49
+        ],
+        "fav": true
+    },
+    "50": {
+        "title": "surrealism",
+        "names": [
+            "surrealism:n:surrealism.n.01",
+            "surrealist:n:surrealist.n.01"
+        ],
+        "sup": 49,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            49,
+            50
+        ],
+        "fav": false
+    },
+    "51": {
+        "title": "european",
+        "names": [
+            "european:n:european.n.01",
+            "european:a:european.a.01",
+            "europe:n:europe.n.01",
+            "europe:n:european_union.n.01",
+            "europe:n:europe.n.03"
+        ],
+        "sup": 49,
+        "sub": [
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61
+        ],
+        "lvl": 1,
+        "path": [
+            49,
+            51
+        ],
+        "fav": false
+    },
+    "52": {
+        "title": "english",
+        "names": [
+            "english:a:english.a.01",
+            "english:a:english.a.02",
+            "english:n:english.n.01",
+            "english:n:english.n.02",
+            "kingdom:n:kingdom.n.02+united:a:united.a.01",
+            "kingdom:n:kingdom.n.03+united:a:united.a.01",
+            "united:a:united.a.01+kingdom:n:kingdom.n.04",
+            "england:n:england.n.01",
+            "britain:n:united_kingdom.n.01",
+            "britain:n:united_kingdom.n.01+great:s:great.s.01",
+            "british:n:british.n.01",
+            "british:a:british.a.01"
+        ],
+        "sup": 51,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            49,
+            51,
+            52
+        ],
+        "fav": true
+    },
+    "53": {
+        "title": "french",
+        "names": [
+            "french:n:french.n.01",
+            "french:n:french.n.02",
+            "french:a:french.a.01",
+            "france:n:france.n.01",
+            "fran\u00e7ais:n",
+            "francais:n"
+        ],
+        "sup": 51,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            49,
+            51,
+            53
+        ],
+        "fav": true
+    },
+    "54": {
+        "title": "german",
+        "names": [
+            "german:n:german.n.01",
+            "german:n:german.n.02",
+            "german:a:german.a.01",
+            "germany:n:germany.n.01",
+            "deutsch:n"
+        ],
+        "sup": 51,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            49,
+            51,
+            54
+        ],
+        "fav": true
+    },
+    "55": {
+        "title": "norse",
+        "names": [
+            "norse:n:scandinavian.n.01",
+            "norse:n:norwegian.n.01",
+            "norse:n:scandinavian.n.02",
+            "norse:a:scandinavian.a.01",
+            "norse:a:norwegian.a.01",
+            "nordic:a:nordic.a.01",
+            "nordic:a:nordic.a.02",
+            "nordic:n:scandinavian.n.02",
+            "nordic:s:nordic.s.03"
+        ],
+        "sup": 51,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            49,
+            51,
+            55
+        ],
+        "fav": true
+    },
+    "56": {
+        "title": "portuguese",
+        "names": [
+            "portuguese:a:portuguese.a.01",
+            "portuguese:n:portuguese.n.01",
+            "portuguese:n:portuguese.n.02",
+            "portugal:n:portugal.n.01"
+        ],
+        "sup": 51,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            49,
+            51,
+            56
+        ],
+        "fav": true
+    },
+    "57": {
+        "title": "swedish",
+        "names": [
+            "swedish:a:swedish.a.01",
+            "swedish:n:swedish.n.01",
+            "sweden:n:sweden.n.01"
+        ],
+        "sup": 51,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            49,
+            51,
+            57
+        ],
+        "fav": false
+    },
+    "58": {
+        "title": "spanish",
+        "names": [
+            "spanish:a:spanish.a.01",
+            "spanish:n:spanish.n.02",
+            "spanish:n:spanish.n.01",
+            "spain:n:spain.n.01"
+        ],
+        "sup": 51,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            49,
+            51,
+            58
+        ],
+        "fav": true
+    },
+    "59": {
+        "title": "poland",
+        "names": [
+            "poland:n:poland.n.01",
+            "polish:a:polish.a.01",
+            "polish:n:polish.n.04",
+            "polski:n"
+        ],
+        "sup": 51,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            49,
+            51,
+            59
+        ],
+        "fav": false
+    },
+    "60": {
+        "title": "ireland",
+        "names": [
+            "ireland:n:ireland.n.01",
+            "ireland:n:ireland.n.02",
+            "irish:a:irish.a.01",
+            "irish:n:irish.n.01",
+            "irish:n:irish.n.03"
+        ],
+        "sup": 51,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            49,
+            51,
+            60
+        ],
+        "fav": false
+    },
+    "61": {
+        "title": "latin",
+        "names": [
+            "latin:n:latin.n.01",
+            "latin:n:latin.n.02",
+            "latin:n:latin.n.03",
+            "latin:a:latin.a.01",
+            "latin:a:latin.a.04",
+            "empire:n:empire.n.01+roman:n:roman.n.01",
+            "empire:n:empire.n.03+roman:n:roman.n.01",
+            "empire:n:empire.n.02+roman:n:roman.n.01",
+            "empire:n:empire.n.01+roman:n:roman.n.02",
+            "empire:n:empire.n.03+roman:n:roman.n.02",
+            "roman:n:roman.n.02+empire:n:empire.n.02",
+            "empire:n:empire.n.01+roman:a:roman.a.01",
+            "empire:n:empire.n.03+roman:a:roman.a.01",
+            "roman:a:roman.a.01+empire:n:empire.n.02",
+            "roman:a:roman.a.02+empire:n:empire.n.01",
+            "empire:n:empire.n.03+roman:a:roman.a.02",
+            "roman:a:roman.a.02+empire:n:empire.n.02"
+        ],
+        "sup": 51,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            49,
+            51,
+            61
+        ],
+        "fav": false
+    },
+    "62": {
+        "title": "russian",
+        "names": [
+            "russian:n:russian.n.01",
+            "russian:n:russian.n.02",
+            "russian:a:russian.a.01",
+            "russia:n:soviet_union.n.01",
+            "russia:n:soviet_russia.n.01",
+            "russia:n:russia.n.03",
+            "russia:n:russia.n.04"
+        ],
+        "sup": 49,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            49,
+            62
+        ],
+        "fav": true
+    },
+    "63": {
+        "title": "australian",
+        "names": [
+            "australian:n:australian.n.01",
+            "australian:n:australian.n.02",
+            "australian:a:australian.a.01",
+            "australia:n:australia.n.01",
+            "australia:n:australia.n.02",
+            "aussie:n:australian.n.01"
+        ],
+        "sup": 49,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            49,
+            63
+        ],
+        "fav": false
+    },
+    "64": {
+        "title": "american",
+        "names": [
+            "american:n:american.n.01",
+            "american:n:american_english.n.01",
+            "american:n:american.n.03",
+            "american:a:american.a.01",
+            "american:a:american.a.02",
+            "united:a:united.a.01+state:n:state.n.01",
+            "america:n:united_states.n.01",
+            "america:n:america.n.02"
+        ],
+        "sup": 49,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            49,
+            64
+        ],
+        "fav": true
+    },
+    "65": {
+        "title": "canadian",
+        "names": [
+            "canadian:n:canadian.n.01",
+            "canadian:a:canadian.a.01",
+            "canada:n:canada.n.01"
+        ],
+        "sup": 49,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            49,
+            65
+        ],
+        "fav": false
+    },
+    "66": {
+        "title": "afrikaans",
+        "names": [
+            "afrikaans:n:afrikaans.n.01",
+            "afrikaans:a:afrikaans.a.01",
+            "africa:n:africa.n.01+south:n:south.n.01",
+            "africa:n:africa.n.01+south:n:confederacy.n.01",
+            "africa:n:africa.n.01+south:n:south.n.03",
+            "africa:n:africa.n.01+south:n:south.n.04",
+            "south:n:south.n.05+africa:n:africa.n.01",
+            "africa:n:africa.n.01+south:a:south.a.01",
+            "africa:n:africa.n.01+south:r:south.r.01"
+        ],
+        "sup": 49,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            49,
+            66
+        ],
+        "fav": false
+    },
+    "67": {
+        "title": "brazilian",
+        "names": [
+            "brazilian:n:brazilian.n.01",
+            "brazilian:a:brazilian.a.01",
+            "brazil:n:brazil.n.01"
+        ],
+        "sup": 49,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            49,
+            67
+        ],
+        "fav": true
+    },
+    "68": {
+        "title": "italian",
+        "names": [
+            "italian:n:italian.n.01",
+            "italian:n:italian.n.02",
+            "italian:a:italian.a.01",
+            "italy:n:italy.n.01"
+        ],
+        "sup": 49,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            49,
+            68
+        ],
+        "fav": true
+    },
+    "69": {
+        "title": "persian",
+        "names": [
+            "persian:n:irani.n.01",
+            "persian:n:persian.n.02",
+            "persian:a:iranian.a.01",
+            "persia:n:persia.n.01",
+            "persia:n:iran.n.01",
+            "iranian:n:irani.n.01",
+            "iranian:n:iranian.n.02",
+            "iranian:a:iranian.a.01",
+            "iran:n:iran.n.01"
+        ],
+        "sup": 49,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            49,
+            69
+        ],
+        "fav": false
+    },
+    "70": {
+        "title": "southern",
+        "names": [
+            "southern:a:southern.a.01",
+            "southern:a:southern.a.03",
+            "southern:s:southerly.s.01",
+            "southern:s:southerly.s.02",
+            "south:n:south.n.01",
+            "south:n:confederacy.n.01",
+            "south:n:south.n.03",
+            "south:n:south.n.04",
+            "south:n:south.n.05",
+            "south:a:south.a.01",
+            "south:r:south.r.01"
+        ],
+        "sup": 49,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            49,
+            70
+        ],
+        "fav": false
+    },
+    "71": {
+        "title": "asian",
+        "names": [
+            "asian:n:asian.n.01",
+            "asian:a:asian.a.01",
+            "asia:n:asia.n.01",
+            "asia:n:asia.n.02"
+        ],
+        "sup": 49,
+        "sub": [
+            72,
+            73,
+            74
+        ],
+        "lvl": 1,
+        "path": [
+            49,
+            71
+        ],
+        "fav": true
+    },
+    "72": {
+        "title": "japanese",
+        "names": [
+            "japanese:n:japanese.n.01",
+            "japanese:n:japanese.n.02",
+            "japanese:a:japanese.a.01",
+            "japan:n:japan.n.01",
+            "japan:n:japan.n.02"
+        ],
+        "sup": 71,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            49,
+            71,
+            72
+        ],
+        "fav": true
+    },
+    "73": {
+        "title": "malay",
+        "names": [
+            "malay:n:malay.n.01",
+            "malay:n:malay.n.02",
+            "malay:a:malay.a.01",
+            "malaysia:n:malaysia.n.01"
+        ],
+        "sup": 71,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            49,
+            71,
+            73
+        ],
+        "fav": false
+    },
+    "74": {
+        "title": "indonesian",
+        "names": [
+            "indonesian:n:indonesian.n.01",
+            "indonesian:n:indonesian.n.02",
+            "indonesian:a:indonesian.a.01",
+            "indonesia:n:indonesia.n.01"
+        ],
+        "sup": 71,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            49,
+            71,
+            74
+        ],
+        "fav": false
+    },
+    "75": {
+        "title": "african",
+        "names": [
+            "african:n:african.n.01",
+            "african:a:african.a.01",
+            "africa:n:africa.n.01"
+        ],
+        "sup": 49,
+        "sub": [
+            76
+        ],
+        "lvl": 1,
+        "path": [
+            49,
+            75
+        ],
+        "fav": true
+    },
+    "76": {
+        "title": "egyptian",
+        "names": [
+            "egyptian:n:egyptian.n.01",
+            "egyptian:n:egyptian.n.02",
+            "egyptian:a:egyptian.a.01",
+            "egypt:n:egypt.n.01",
+            "egypt:n:egyptian_empire.n.01"
+        ],
+        "sup": 75,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            49,
+            75,
+            76
+        ],
+        "fav": false
+    },
+    "77": {
+        "title": "arabic",
+        "names": [
+            "arabic:n:arabic.n.01",
+            "arabic:a:arabic.a.01"
+        ],
+        "sup": 49,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            49,
+            77
+        ],
+        "fav": true
+    },
+    "78": {
+        "title": "renaissance",
+        "names": [
+            "renaissance:n:renaissance.n.01"
+        ],
+        "sup": 49,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            49,
+            78
+        ],
+        "fav": false
+    },
+    "79": {
+        "title": "middle ages",
+        "names": [
+            "middle:a:middle.a.03+age:n:historic_period.n.01",
+            "middle:a:middle.a.04+age:n:historic_period.n.01",
+            "middleages:n",
+            "medieval:a:medieval.a.01",
+            "medieval:s:medieval.s.02",
+            "medieval:s:chivalric.s.01"
+        ],
+        "sup": 49,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            49,
+            79
+        ],
+        "fav": false
+    },
+    "80": {
+        "title": "modern",
+        "names": [
+            "modern:a:modern.a.01"
+        ],
+        "sup": 49,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            49,
+            80
+        ],
+        "fav": true
+    },
+    "81": {
+        "title": "contemporary",
+        "names": [
+            "contemporary:s:contemporary.s.01",
+            "contemporary:s:contemporary.s.02"
+        ],
+        "sup": 49,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            49,
+            81
+        ],
+        "fav": true
+    },
+    "82": {
+        "title": "non-fiction",
+        "names": [
+            "non:r:not.r.01+fiction:n:fiction.n.01",
+            "nonfiction:n:nonfiction.n.01"
+        ],
+        "sup": null,
+        "sub": [
+            83,
+            90,
+            91,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            101,
+            102,
+            103,
+            104,
+            105,
+            108,
+            109,
+            110,
+            111,
+            113,
+            119,
+            122,
+            123,
+            124,
+            125,
+            126,
+            127
+        ],
+        "lvl": 0,
+        "path": [
+            82
+        ],
+        "fav": false
+    },
+    "83": {
+        "title": "academic",
+        "names": [
+            "academic:a:academic.a.01"
+        ],
+        "sup": 82,
+        "sub": [
+            84,
+            85,
+            86,
+            87,
+            88,
+            89
+        ],
+        "lvl": 1,
+        "path": [
+            82,
+            83
+        ],
+        "fav": true
+    },
+    "84": {
+        "title": "review",
+        "names": [
+            "review:n:reappraisal.n.01",
+            "review:n:review.n.02",
+            "review:v:review.v.02"
+        ],
+        "sup": 83,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            82,
+            83,
+            84
+        ],
+        "fav": false
+    },
+    "85": {
+        "title": "research",
+        "names": [
+            "research:n:research.n.01",
+            "research:v:research.v.01"
+        ],
+        "sup": 83,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            82,
+            83,
+            85
+        ],
+        "fav": false
+    },
+    "86": {
+        "title": "article",
+        "names": [
+            "article:n:article.n.01"
+        ],
+        "sup": 83,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            82,
+            83,
+            86
+        ],
+        "fav": false
+    },
+    "87": {
+        "title": "textbook",
+        "names": [
+            "textbook:n:textbook.n.01"
+        ],
+        "sup": 83,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            82,
+            83,
+            87
+        ],
+        "fav": false
+    },
+    "88": {
+        "title": "report",
+        "names": [
+            "report:n:report.n.01",
+            "report:n:composition.n.08"
+        ],
+        "sup": 83,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            82,
+            83,
+            88
+        ],
+        "fav": false
+    },
+    "89": {
+        "title": "thesis",
+        "names": [
+            "thesis:n:dissertation.n.01"
+        ],
+        "sup": 83,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            82,
+            83,
+            89
+        ],
+        "fav": false
+    },
+    "90": {
+        "title": "bibliography",
+        "names": [
+            "bibliography:n:bibliography.n.01"
+        ],
+        "sup": 82,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            82,
+            90
+        ],
+        "fav": false
+    },
+    "91": {
+        "title": "biography",
+        "names": [
+            "biography:n:biography.n.01",
+            "biographical:a:biographic.a.01"
+        ],
+        "sup": 82,
+        "sub": [
+            92,
+            93
+        ],
+        "lvl": 1,
+        "path": [
+            82,
+            91
+        ],
+        "fav": true
+    },
+    "92": {
+        "title": "autobiography",
+        "names": [
+            "autobiography:n:autobiography.n.01",
+            "autobiographical:a:autobiographical.a.01",
+            "autobiographical:a:autobiographical.a.02"
+        ],
+        "sup": 91,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            82,
+            91,
+            92
+        ],
+        "fav": false
+    },
+    "93": {
+        "title": "memoir",
+        "names": [
+            "memoir:n:memoir.n.01",
+            "memoir:n:memoir.n.02"
+        ],
+        "sup": 91,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            82,
+            91,
+            93
+        ],
+        "fav": false
+    },
+    "94": {
+        "title": "commentary",
+        "names": [
+            "commentary:n:comment.n.02"
+        ],
+        "sup": 82,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            82,
+            94
+        ],
+        "fav": false
+    },
+    "95": {
+        "title": "critique",
+        "names": [
+            "critique:n:review.n.02",
+            "critique:n:criticism.n.02",
+            "critique:v:review.v.02",
+            "criticism:n:criticism.n.02",
+            "criticism:n:criticism.n.03"
+        ],
+        "sup": 82,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            82,
+            95
+        ],
+        "fav": true
+    },
+    "96": {
+        "title": "law",
+        "names": [
+            "law:n:law.n.01",
+            "law:n:jurisprudence.n.01",
+            "law:n:law.n.06",
+            "juridic:a:juridical.a.01",
+            "juridic:a:judicial.a.03"
+        ],
+        "sup": 82,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            82,
+            96
+        ],
+        "fav": true
+    },
+    "97": {
+        "title": "letter",
+        "names": [
+            "letter:n:letter.n.01"
+        ],
+        "sup": 82,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            82,
+            97
+        ],
+        "fav": false
+    },
+    "98": {
+        "title": "manuscript",
+        "names": [
+            "manuscript:n:manuscript.n.01",
+            "manuscript:n:manuscript.n.02"
+        ],
+        "sup": 82,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            82,
+            98
+        ],
+        "fav": false
+    },
+    "99": {
+        "title": "philosophy",
+        "names": [
+            "philosophy:n:doctrine.n.01",
+            "philosophy:n:philosophy.n.02",
+            "philosophical:a:philosophic.a.01",
+            "philosophical:s:philosophical.s.02"
+        ],
+        "sup": 82,
+        "sub": [
+            100
+        ],
+        "lvl": 1,
+        "path": [
+            82,
+            99
+        ],
+        "fav": true
+    },
+    "100": {
+        "title": "metaphysics",
+        "names": [
+            "metaphysics:n:metaphysics.n.01"
+        ],
+        "sup": 99,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            82,
+            99,
+            100
+        ],
+        "fav": false
+    },
+    "101": {
+        "title": "testament",
+        "names": [
+            "testament:n:testament.n.01"
+        ],
+        "sup": 82,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            82,
+            101
+        ],
+        "fav": false
+    },
+    "102": {
+        "title": "essay",
+        "names": [
+            "essay:n:essay.n.01"
+        ],
+        "sup": 82,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            82,
+            102
+        ],
+        "fav": false
+    },
+    "103": {
+        "title": "journal",
+        "names": [
+            "journal:n:journal.n.02",
+            "journalist:n:journalist.n.01",
+            "journalistic:a:journalistic.a.01"
+        ],
+        "sup": 82,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            82,
+            103
+        ],
+        "fav": true
+    },
+    "104": {
+        "title": "art",
+        "names": [
+            "art:n:art.n.01",
+            "art:n:art.n.02"
+        ],
+        "sup": 82,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            82,
+            104
+        ],
+        "fav": true
+    },
+    "105": {
+        "title": "economics",
+        "names": [
+            "economics:n:economics.n.01"
+        ],
+        "sup": 82,
+        "sub": [
+            106,
+            107
+        ],
+        "lvl": 1,
+        "path": [
+            82,
+            105
+        ],
+        "fav": true
+    },
+    "106": {
+        "title": "business",
+        "names": [
+            "business:n:business.n.01",
+            "business:n:commercial_enterprise.n.02",
+            "business:n:business.n.06",
+            "business:n:business.n.07"
+        ],
+        "sup": 105,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            82,
+            105,
+            106
+        ],
+        "fav": false
+    },
+    "107": {
+        "title": "finance",
+        "names": [
+            "finance:n:finance.n.01",
+            "finance:n:finance.n.02",
+            "finance:n:finance.n.03"
+        ],
+        "sup": 105,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            82,
+            105,
+            107
+        ],
+        "fav": false
+    },
+    "108": {
+        "title": "computer science",
+        "names": [
+            "science:n:science.n.01+computer:n:computer.n.01",
+            "data:n:data.n.01"
+        ],
+        "sup": 82,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            82,
+            108
+        ],
+        "fav": true
+    },
+    "109": {
+        "title": "entertainment",
+        "names": [
+            "entertainment:n:entertainment.n.01"
+        ],
+        "sup": 82,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            82,
+            109
+        ],
+        "fav": false
+    },
+    "110": {
+        "title": "fashion",
+        "names": [
+            "fashion:n:fashion.n.04"
+        ],
+        "sup": 82,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            82,
+            110
+        ],
+        "fav": false
+    },
+    "111": {
+        "title": "medicine",
+        "names": [
+            "medicine:n:medicine.n.01",
+            "medicine:n:medicine.n.02",
+            "medicine:n:medicine.n.03",
+            "medicine:v:medicate.v.02",
+            "medical:a:medical.a.01",
+            "medical:a:medical.a.02"
+        ],
+        "sup": 82,
+        "sub": [
+            112
+        ],
+        "lvl": 1,
+        "path": [
+            82,
+            111
+        ],
+        "fav": true
+    },
+    "112": {
+        "title": "veterinary",
+        "names": [
+            "veterinary:n:veterinarian.n.01",
+            "veterinary:a:veterinary.a.01"
+        ],
+        "sup": 111,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            82,
+            111,
+            112
+        ],
+        "fav": false
+    },
+    "113": {
+        "title": "politics",
+        "names": [
+            "politics:n:politics.n.02",
+            "politics:n:politics.n.03",
+            "politics:n:politics.n.04",
+            "politics:n:politics.n.05",
+            "political:a:political.a.01",
+            "political:a:political.a.02",
+            "political:a:political.a.03"
+        ],
+        "sup": 82,
+        "sub": [
+            114,
+            115,
+            116,
+            117,
+            118
+        ],
+        "lvl": 1,
+        "path": [
+            82,
+            113
+        ],
+        "fav": true
+    },
+    "114": {
+        "title": "liberal",
+        "names": [
+            "liberal:a:liberal.a.03",
+            "liberal:n:liberal.n.01",
+            "liberal:n:liberal.n.02",
+            "liberalism:n:liberalism.n.01",
+            "liberalism:n:liberalism.n.02"
+        ],
+        "sup": 113,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            82,
+            113,
+            114
+        ],
+        "fav": false
+    },
+    "115": {
+        "title": "communism",
+        "names": [
+            "communism:n:communism.n.01",
+            "communism:n:communism.n.02",
+            "communist:n:communist.n.01",
+            "communist:n:communist.n.02",
+            "communist:a:communist.a.01"
+        ],
+        "sup": 113,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            82,
+            113,
+            115
+        ],
+        "fav": false
+    },
+    "116": {
+        "title": "conservatism",
+        "names": [
+            "conservatism:n:conservatism.n.01",
+            "conservative:n:conservative.n.01",
+            "conservative:n:conservative.n.02",
+            "conservative:s:conservative.s.02",
+            "conservative:a:conservative.a.01"
+        ],
+        "sup": 113,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            82,
+            113,
+            116
+        ],
+        "fav": false
+    },
+    "117": {
+        "title": "feminism",
+        "names": [
+            "feminism:n:feminism.n.01",
+            "feminism:n:feminist_movement.n.01",
+            "feminist:n:feminist.n.01",
+            "feminist:a:feminist.a.01"
+        ],
+        "sup": 113,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            82,
+            113,
+            117
+        ],
+        "fav": false
+    },
+    "118": {
+        "title": "capitalism",
+        "names": [
+            "capitalism:n:capitalism.n.01",
+            "capitalist:n:capitalist.n.01",
+            "capitalist:a:capitalist.a.01",
+            "capitalist:a:capitalistic.a.01",
+            "capital:n:capital.n.02"
+        ],
+        "sup": 113,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            82,
+            113,
+            118
+        ],
+        "fav": false
+    },
+    "119": {
+        "title": "science",
+        "names": [
+            "science:n:science.n.01",
+            "scientific:a:scientific.a.01",
+            "scientific:a:scientific.a.02"
+        ],
+        "sup": 82,
+        "sub": [
+            120,
+            121
+        ],
+        "lvl": 1,
+        "path": [
+            82,
+            119
+        ],
+        "fav": true
+    },
+    "120": {
+        "title": "anthropology",
+        "names": [
+            "anthropology:n:anthropology.n.01"
+        ],
+        "sup": 119,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            82,
+            119,
+            120
+        ],
+        "fav": false
+    },
+    "121": {
+        "title": "sociology",
+        "names": [
+            "sociology:n:sociology.n.01"
+        ],
+        "sup": 119,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            82,
+            119,
+            121
+        ],
+        "fav": false
+    },
+    "122": {
+        "title": "sports",
+        "names": [
+            "sport:n:sport.n.01",
+            "sport:n:sport.n.02",
+            "sport:n:sport.n.05"
+        ],
+        "sup": 82,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            82,
+            122
+        ],
+        "fav": true
+    },
+    "123": {
+        "title": "technical",
+        "names": [
+            "technical:a:technical.a.01",
+            "technical:a:technical.a.02",
+            "technical:a:technical.a.03",
+            "technical:s:technical.s.04",
+            "technology:n:technology.n.01",
+            "technology:n:engineering.n.02"
+        ],
+        "sup": 82,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            82,
+            123
+        ],
+        "fav": true
+    },
+    "124": {
+        "title": "video games",
+        "names": [
+            "game:n:game.n.01+video:n:video.n.03",
+            "video:n:video.n.03+game:n:game.n.02",
+            "video:n:video.n.03+game:n:game.n.03"
+        ],
+        "sup": 82,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            82,
+            124
+        ],
+        "fav": false
+    },
+    "125": {
+        "title": "self-help",
+        "names": [
+            "self:n:self.n.01+help:n:aid.n.01",
+            "help:n:aid.n.01+self:n:self.n.02",
+            "help:n:aid.n.01+self:a:self.a.01",
+            "self:n:self.n.01+help:v:help.v.02",
+            "self:n:self.n.02+help:v:help.v.02",
+            "self:a:self.a.01+help:v:help.v.02",
+            "self:n:self.n.01+help:v:help.v.08",
+            "help:v:help.v.08+self:n:self.n.02",
+            "help:v:help.v.08+self:a:self.a.01"
+        ],
+        "sup": 82,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            82,
+            125
+        ],
+        "fav": false
+    },
+    "126": {
+        "title": "obituary",
+        "names": [
+            "obituary:n:obituary.n.01"
+        ],
+        "sup": 82,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            82,
+            126
+        ],
+        "fav": false
+    },
+    "127": {
+        "title": "travel",
+        "names": [
+            "travel:n:travel.n.01",
+            "travel:n:change_of_location.n.01",
+            "travel:v:travel.v.02",
+            "travel:v:travel.v.03"
+        ],
+        "sup": 82,
+        "sub": [
+            128
+        ],
+        "lvl": 1,
+        "path": [
+            82,
+            127
+        ],
+        "fav": true
+    },
+    "128": {
+        "title": "guide",
+        "names": [
+            "guide:n:guidebook.n.01"
+        ],
+        "sup": 127,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            82,
+            127,
+            128
+        ],
+        "fav": false
+    },
+    "129": {
+        "title": "historical",
+        "names": [
+            "historical:a:historical.a.01",
+            "historical:s:historical.s.02",
+            "historical:s:historic.s.01"
+        ],
+        "sup": null,
+        "sub": [
+            130,
+            131,
+            134
+        ],
+        "lvl": 0,
+        "path": [
+            129
+        ],
+        "fav": true
+    },
+    "130": {
+        "title": "alternate history",
+        "names": [
+            "alternate:s:alternate.s.02+history:n:history.n.01",
+            "history:n:history.n.02+alternate:s:alternate.s.02",
+            "history:n:history.n.03+alternate:s:alternate.s.02",
+            "alternate:s:alternate.s.02+history:n:history.n.04",
+            "history:n:history.n.05+alternate:s:alternate.s.02"
+        ],
+        "sup": 129,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            129,
+            130
+        ],
+        "fav": false
+    },
+    "131": {
+        "title": "war",
+        "names": [
+            "war:n:war.n.01",
+            "war:n:war.n.02",
+            "war:v:war.v.01"
+        ],
+        "sup": 129,
+        "sub": [
+            132,
+            133
+        ],
+        "lvl": 1,
+        "path": [
+            129,
+            131
+        ],
+        "fav": true
+    },
+    "132": {
+        "title": "world war 1",
+        "names": [
+            "war:n:war.n.01+1:n+world:n:world.n.02",
+            "world:n:world.n.02+1:n+war:n:war.n.02",
+            "world:n:world.n.02+1:n+war:v:war.v.01",
+            "war:n:war.n.01+1:n+world:n:earth.n.01",
+            "world:n:earth.n.01+1:n+war:n:war.n.02",
+            "1:n+world:n:earth.n.01+war:v:war.v.01",
+            "war:n:war.n.01+1:n+world:s:global.s.01",
+            "1:n+war:n:war.n.02+world:s:global.s.01",
+            "1:n+world:s:global.s.01+war:v:war.v.01",
+            "war:n:war.n.01+world:n:world.n.02",
+            "world:n:world.n.02+war:n:war.n.02",
+            "world:n:world.n.02+war:v:war.v.01",
+            "war:n:war.n.01+world:n:earth.n.01",
+            "world:n:earth.n.01+war:n:war.n.02",
+            "world:n:earth.n.01+war:v:war.v.01",
+            "war:n:war.n.01+world:s:global.s.01",
+            "war:n:war.n.02+world:s:global.s.01",
+            "world:s:global.s.01+war:v:war.v.01",
+            "wwi:n",
+            "1:n+ww:n"
+        ],
+        "sup": 131,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            129,
+            131,
+            132
+        ],
+        "fav": false
+    },
+    "133": {
+        "title": "world war 2",
+        "names": [
+            "war:n:war.n.01+world:n:world.n.02+2:n",
+            "world:n:world.n.02+war:n:war.n.02+2:n",
+            "world:n:world.n.02+2:n+war:v:war.v.01",
+            "war:n:war.n.01+world:n:earth.n.01+2:n",
+            "world:n:earth.n.01+war:n:war.n.02+2:n",
+            "world:n:earth.n.01+2:n+war:v:war.v.01",
+            "war:n:war.n.01+world:s:global.s.01+2:n",
+            "world:s:global.s.01+war:n:war.n.02+2:n",
+            "world:s:global.s.01+2:n+war:v:war.v.01",
+            "war:n:war.n.01+world:n:world.n.02+ii:n",
+            "world:n:world.n.02+war:n:war.n.02+ii:n",
+            "world:n:world.n.02+ii:n+war:v:war.v.01",
+            "war:n:war.n.01+world:n:earth.n.01+ii:n",
+            "world:n:earth.n.01+war:n:war.n.02+ii:n",
+            "world:n:earth.n.01+ii:n+war:v:war.v.01",
+            "war:n:war.n.01+ii:n+world:s:global.s.01",
+            "world:s:global.s.01+war:n:war.n.02+ii:n",
+            "ii:n+world:s:global.s.01+war:v:war.v.01",
+            "wwii:n",
+            "ww:n+2:n",
+            "holocaust:n:holocaust.n.02"
+        ],
+        "sup": 131,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            129,
+            131,
+            133
+        ],
+        "fav": false
+    },
+    "134": {
+        "title": "religion",
+        "names": [
+            "religion:n:religion.n.01",
+            "religion:n:religion.n.02",
+            "religious:a:religious.a.02",
+            "religious:s:religious.s.01"
+        ],
+        "sup": 129,
+        "sub": [
+            135,
+            136,
+            137
+        ],
+        "lvl": 1,
+        "path": [
+            129,
+            134
+        ],
+        "fav": true
+    },
+    "135": {
+        "title": "christian",
+        "names": [
+            "christian:n:christian.n.01",
+            "christian:a:christian.a.01",
+            "christian:a:christian.a.02",
+            "christianity:n:christianity.n.01",
+            "christianity:n:christendom.n.01",
+            "catholic:n:catholic.n.01",
+            "catholic:a:catholic.a.01",
+            "catholicism:n:catholicism.n.01"
+        ],
+        "sup": 134,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            129,
+            134,
+            135
+        ],
+        "fav": false
+    },
+    "136": {
+        "title": "islamic",
+        "names": [
+            "islamic:a:muslim.a.01",
+            "islam:n:islam.n.01",
+            "islam:n:islam.n.02",
+            "muslim:n:muslim.n.01",
+            "muslim:a:muslim.a.01"
+        ],
+        "sup": 134,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            129,
+            134,
+            136
+        ],
+        "fav": false
+    },
+    "137": {
+        "title": "jew",
+        "names": [
+            "jew:n:jew.n.01",
+            "jewish:a:jewish.a.01"
+        ],
+        "sup": 134,
+        "sub": [],
+        "lvl": 2,
+        "path": [
+            129,
+            134,
+            137
+        ],
+        "fav": false
+    },
+    "138": {
+        "title": "comedy",
+        "names": [
+            "comedy:n:comedy.n.01"
+        ],
+        "sup": null,
+        "sub": [
+            139,
+            140,
+            141,
+            142
+        ],
+        "lvl": 0,
+        "path": [
+            138
+        ],
+        "fav": true
+    },
+    "139": {
+        "title": "humour",
+        "names": [
+            "humour:n:wit.n.01",
+            "humour:v:humor.v.01",
+            "humor:n:humor.n.02",
+            "humor:v:humor.v.01",
+            "humorous:a:humorous.a.01"
+        ],
+        "sup": 138,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            138,
+            139
+        ],
+        "fav": false
+    },
+    "140": {
+        "title": "burlesque",
+        "names": [
+            "burlesque:n:burlesque.n.01",
+            "burlesque:a:burlesque.a.01"
+        ],
+        "sup": 138,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            138,
+            140
+        ],
+        "fav": false
+    },
+    "141": {
+        "title": "parody",
+        "names": [
+            "parody:n:parody.n.01",
+            "parody:n:parody.n.02",
+            "parody:v:parody.v.01"
+        ],
+        "sup": 138,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            138,
+            141
+        ],
+        "fav": false
+    },
+    "142": {
+        "title": "tragicomedy",
+        "names": [
+            "tragicomedy:n:tragicomedy.n.01",
+            "tragicomedy:n:seriocomedy.n.01"
+        ],
+        "sup": 138,
+        "sub": [],
+        "lvl": 1,
+        "path": [
+            138,
+            142
+        ],
+        "fav": false
+    }
+}

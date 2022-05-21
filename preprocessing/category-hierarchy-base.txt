@@ -1,0 +1,145 @@
+fiction, imaginary, story, fic
+	folklore, folktale
+		legend, myth, mythology, mythological
+		fairy tale, fairytale
+		parable
+		fable
+		urban legend
+	children, child !
+	romance, romantic !
+	fantasy !
+		epic, heroic
+	realism, realistic !
+	satire !
+	psychological !
+	thriller, suspense !
+		legal thriller
+		spy, espionage, espionnage
+	political !
+	erotic !
+	comics, comic strip, comic_strip !
+	action !
+		superhero, superman, captain america
+	adventure !
+		pirate
+		western
+	survival
+	crime, mystery !
+		detective, sherlock holmes, sherlock
+		police
+	fantastique, fantastic !
+		magic
+		supernatural
+		monster
+		paranormal
+	science-fiction, sci-fi, scifi !
+		futurism, futuristic
+		apocalyptic, apocalypse
+		post-apocalyptic
+		utopia, utopian
+		dystopia, dystopian
+		cyberpunk
+		steampunk
+		mecha
+		space
+	horror !
+		zombie
+		gothic
+		lovecraftian
+	drama !
+
+literature, lit, literary !
+	surrealism, surrealist
+	european, europe
+		english, united kingdom, england, britain, great britain, british !
+		french, france, français, francais !
+		german, germany, deutsch !
+		norse, nordic !
+		portuguese, portugal !
+		swedish, sweden
+		spanish, spain !
+		poland, polish, polski
+		ireland, irish
+		latin, roman empire
+	russian, russia !
+	australian, australia, aussie
+	american, united states, america !
+	canadian, canada
+	afrikaans, south africa
+	brazilian, brazil !
+	italian, italy !
+	persian, persia, iranian, iran
+	southern, south
+	asian, asia !
+		japanese, japan !
+		malay, malaysia
+		indonesian, indonesia
+	african, africa !
+		egyptian, egypt
+	arabic !
+	renaissance
+	middle ages, middleages, medieval
+	modern !
+	contemporary !
+
+non-fiction, nonfiction
+	academic !
+		review
+		research
+		article
+		textbook
+		report
+		thesis
+	bibliography
+	biography, biographical !
+		autobiography, autobiographical
+		memoir
+	commentary
+	critique, criticism !
+	law, juridic !
+	letter
+	manuscript
+	philosophy, philosophical !
+		metaphysics
+	testament
+	essay
+	journal, journalist, journalistic !
+	art !
+	economics !
+		business
+		finance
+	computer science, data !
+	entertainment
+	fashion
+	medicine, medical !
+		veterinary
+	politics, political !
+		liberal, liberalism
+		communism, communist
+		conservatism, conservative
+		feminism, feminist
+		capitalism, capitalist, capital
+	science, scientific !
+		anthropology
+		sociology
+	sports !
+	technical, technology !
+	video games
+	self-help
+	obituary
+	travel !
+		guide
+historical !
+	alternate history
+	war !
+		world war 1, world war I, wwi, ww1
+		world war 2, world war II, wwii, ww2, holocaust
+	religion, religious !
+		christian, christianity, catholic, catholicism
+		islamic, islam, muslim
+		jew, jewish
+comedy !
+	humour, humor, humorous
+	burlesque
+	parody
+	tragicomedy
