@@ -54,6 +54,7 @@ def generate_users(usermap_in:str, bookmap_in:str, interaction_in:str, booktags_
 
 	print("== Generating users")
 	usernames = set()
+	emails = set()
 	fake = Faker()
 	random_favorites = 0
 	with open(users_out, "w", encoding="utf-8") as out:
@@ -62,17 +63,19 @@ def generate_users(usermap_in:str, bookmap_in:str, interaction_in:str, booktags_
 			first_name = fake.first_name()
 			last_name = fake.last_name()
 			
-			username_base = first_name[0].lower() + last_name.lower()
+			username_base = (first_name[0].lower() + last_name.lower()).replace(" ", "")
 			username_num = 1
 			username = username_base
 			while username in usernames:
 				username = username_base + str(username_num)
 				username_num += 1
+			usernames.add(username)
 
 			password = hashlib.sha256(username.encode("UTF-8")).hexdigest()
-			email = username.replace(" ", "") + "@" + fake.free_email_domain()
+			email = username + "@" + fake.free_email_domain()
 			address = fake.address().replace("\n", ", ")
 			signin_date = fake.date_between()
+			emails.add(email)
 
 			if user_id in interactions:
 				user_books = set()

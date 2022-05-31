@@ -7,9 +7,9 @@ from nltk.corpus import wordnet
 from nltk.corpus import stopwords
 
 
-INVERTER_WORDS = set({"no", "non", "not", "anti"})
+INVERTER_WORDS = {"no", "non", "not", "anti"}
 STOPWORDS = set(stopwords.words("english")) - INVERTER_WORDS
-INITIAL_BANWORDS = set({"read", "reading", "own", "my", "default", "meine", "favorite", "favourite", "kindle"})
+INITIAL_BANWORDS = {"read", "reading", "own", "my", "default", "meine", "favorite", "favourite", "kindle"}
 ENGLISH_WORDS = set(wordnet.words())
 
 LEMMATIZER = WordNetLemmatizer()

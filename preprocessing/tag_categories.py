@@ -20,8 +20,9 @@ NOT_DETECTED_POS_MULTIPLIER = 0.95
 
 MIN_BOOKS = 4
 MIN_WORD_SIMILARITY = 0.65
-MIN_NAME_SIMILARITY = 0.75
-MIN_NAME_SUPERCLASS_PROB = 0.8
+MIN_SAME_SIMILARITY = 0.70
+MIN_NAME_SIMILARITY = 0.72
+MIN_NAME_SUPERCLASS_PROB = 0.78
 
 
 def edit_similarity(shelfword:str, entryword:str):
@@ -62,9 +63,17 @@ def word_similarity(shelfword:str, shelfpos:str, entryword:str, entrypos:str, en
 		return edit_similarity(shelfword, entryword)
 
 def name_similarity(shelfname:Name, entryname:Name):
-	similarity_matrix = np.zeros((len(shelfname), len(entryname)), dtype=float)
-	for i, (shelfword, shelfpos, shelfhint) in enumerate(shelfname.tokens()):
-		for j, (entryword, entrypos, entryhint) in enumerate(entryname.tokens()):
+	shelf_inverters = INVERTER_WORDS & shelfname
+	entry_inverters = INVERTER_WORDS & entryname
+	is_contrary = (len(shelf_inverters) % 2 != len(entry_inverters) % 2)
+
+	shelf_words = shelfname - INVERTER_WORDS
+	entry_words = entryname - INVERTER_WORDS
+	
+
+	similarity_matrix = np.zeros((len(shelf_words), len(entry_words)), dtype=float)
+	for i, (shelfword, shelfpos, shelfhint) in enumerate(shelf_words.tokens()):
+		for j, (entryword, entrypos, entryhint) in enumerate(entry_words.tokens()):
 			similarity_matrix[i, j] = word_similarity(shelfword, shelfpos, entryword, entrypos, entryhint)
 
 	# TODO : Find something better
@@ -82,10 +91,15 @@ def name_similarity(shelfname:Name, entryname:Name):
 	for entryindex in range(similarity_matrix.shape[1]):
 		similarity += similarity_matrix[:, entryindex].max()
 
-	similarity /= (len(shelfname) + len(entryname))
+	similarity /= (len(shelf_words) + len(entry_words))
 	if subclass_denominator > 0:
 		subclass /= subclass_denominator
 	else:
+		subclass = 0
+
+	if similarity > MIN_SAME_SIMILARITY and is_contrary:
+		similarity = 1 - similarity
+	if subclass > MIN_SAME_SIMILARITY and is_contrary:
 		subclass = 0
 	return similarity, subclass
 
@@ -100,7 +114,7 @@ def entry_similarity(shelfname:Name, entry:HierarchyItem):
 	return max_similarity, max_subclass
 
 
-def categorize(books_in:str, tags_out:str, booktags_out:str, hierarchy:Hierarchy, authors:dict, series:dict):
+def categorize(books_in:str, tags_out:str, booktags_out:str, association_out:str, unassociated_out:str, hierarchy:Hierarchy, authors:dict, series:dict):
 	print("\n==== Loading book data")
 	book_shelves = {}
 	existing_shelves = {}
@@ -176,10 +190,10 @@ def categorize(books_in:str, tags_out:str, booktags_out:str, hierarchy:Hierarchy
 	print(f"\rProcessed similarity of {shelfindex+1}/{len(shelf_ids)}")
 
 	print("==== Writing debug information")
-	with open("unassociated.txt", "w", encoding="utf-8") as f:
+	with open(unassociated_out, "w", encoding="utf-8") as f:
 		for name in unassociated:
 			f.write(name.tostring() + "\n")
-	with open("association.json", "w", encoding="utf-8") as f:
+	with open(association_out, "w", encoding="utf-8") as f:
 		output = {}
 		for shelf, associated in shelf_association.items():
 			output[shelf.tostring()] = [hierarchy.get(id).names[0].tostring() for id in associated]
@@ -233,6 +247,8 @@ if __name__ == "__main__":
 	series_in = os.path.join(dataset_path, "goodreads_book_series.json")
 	booktags_out = os.path.join(dataset_path, "goodreads_book_tags.json")
 	tags_out = os.path.join(dataset_path, "goodreads_tags.csv")
+	association_out = os.path.join(dataset_path, "association.json")
+	unassociated_out = os.path.join(dataset_path, "unassociated.txt")
 
 	print("== Loading authors and series")
 	authors = load_authors(authors_in)
@@ -241,4 +257,4 @@ if __name__ == "__main__":
 	with open("category-hierarchy.json", "r", encoding="utf-8") as jsonfile:
 		hierarchy = Hierarchy.load(json.load(jsonfile))
 
-	categorize(books_in, tags_out, booktags_out, hierarchy, authors, series)
+	categorize(books_in, tags_out, booktags_out, association_out, unassociated_out, hierarchy, authors, series)

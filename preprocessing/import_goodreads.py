@@ -113,6 +113,10 @@ class Table (object):
 		"""Return the columns {name: (type, pk, fk), ...}"""
 		NotImplemented
 
+	def indexes(self):
+		"""Return the additional indexes {column name: unique, ...}"""
+		return {}
+
 	def preprocess(self, dirname, processes):
 		pass
 
@@ -137,6 +141,9 @@ class Table (object):
 	def add_filters(self, *filters):
 		"""Add row filters to the table"""
 		self.filters.extend(filters)
+
+	def additional_constraints(self):
+		return ""
 
 
 # DB type aliases
@@ -402,9 +409,9 @@ class UserTable (Table):
 			"user_id": (Int, True, None),
 			"first_name": (String, False, None),
 			"last_name": (String, False, None),
-			"username": (String, False, None),
+			"username": (Str(30), False, None),
 			"password": (String, False, None),
-			"mail": (String, False, None),
+			"mail": (Str(60), False, None),
 			"address": (Text, False, None),
 			"sign_in_date": (Date, False, None),
 			"first_fav_category": (Int, False, TableName.Tag),
@@ -417,6 +424,13 @@ class UserTable (Table):
 			for colname, (type, pk, fk) in self._columns.items():
 				importrow[colname] = convert_value(row[colname], type)
 			yield (rowindex, importrow)
+
+	def additional_constraints(self):
+		return "UNIQUE (username), UNIQUE (mail),\n"
+
+	def indexes(self):
+		#       colname unique
+		return {"mail": True}
 
 
 
@@ -485,12 +499,19 @@ class TableImport (object):
 					else:
 						constraints += f"FOREIGN KEY ({colname}) REFERENCES {foreign_key}({foreign_pk[0]}),\n"
 
+		constraints += self.table.additional_constraints()
+
 		if constraints != "":
 			constraints = constraints.rstrip("\n,")
 		else:
 			columns = columns.rstrip("\n,")
 
 		self.connection.execute(f"CREATE TABLE {self.table.name} ({columns} {constraints});")
+
+		# Generate indexes
+		for colname, unique in self.table.indexes().items():
+			self.connection.execute(f"CREATE {'UNIQUE ' if unique else ''}INDEX idx__{self.table.name}__{colname} ON {self.table.name}({colname});")
+
 		self.connection.commit()
 		self.connection.disconnect()
 
