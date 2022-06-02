@@ -1,0 +1,99 @@
+Table BOOK {
+	book_id INTEGER [pk]
+	country_code VARCHAR(2)
+	description TEXT
+	format TINYTEXT
+	image_url TINYTEXT
+	is_ebook BOOLEAN
+	num_pages INTEGER
+	publication_year INTEGER
+	publication_month INTEGER
+	publisher TINYTEXT
+	title TINYTEXT
+	average_rating FLOAT
+	ratings_count INTEGER
+	text_reviews_count INTEGER
+	tag_count INTEGER
+	tag_counts_sum FLOAT
+}
+Table TAG {
+	tag_id INTEGER [pk]
+	name TINYTEXT
+	super INTEGER
+	level INTEGER
+	favorite_select BOOLEAN
+}
+Ref: TAG.super > TAG.tag_id
+Table TAGGED {
+	book_id INTEGER [pk]
+	tag_id INTEGER [pk]
+	count INTEGER
+}
+Ref: TAGGED.book_id > BOOK.book_id
+Ref: TAGGED.tag_id > TAG.tag_id
+Table AUTHOR {
+	author_id INTEGER [pk]
+	name TINYTEXT
+	average_rating FLOAT
+	ratings_count INTEGER
+	text_reviews_count INTEGER
+}
+Table WROTE {
+	author_id INTEGER [pk]
+	book_id INTEGER [pk]
+}
+Ref: WROTE.author_id > AUTHOR.author_id
+Ref: WROTE.book_id > BOOK.book_id
+Table SERIES {
+	series_id INTEGER [pk]
+	numbered BOOLEAN
+	note TEXT
+	description TEXT
+	title TINYTEXT
+	series_works_count INTEGER
+	primary_work_count INTEGER
+}
+Table CONTAINS {
+	series_id INTEGER [pk]
+	book_id INTEGER [pk]
+}
+Ref: CONTAINS.series_id > SERIES.series_id
+Ref: CONTAINS.book_id > BOOK.book_id
+Table USER {
+	user_id INTEGER [pk]
+	first_name TINYTEXT
+	last_name TINYTEXT
+	username VARCHAR(30)
+	password TINYTEXT
+	mail VARCHAR(60)
+	address TEXT
+	sign_in_date DATE
+	first_fav_category INTEGER
+	second_fav_category INTEGER
+	third_fav_category INTEGER
+}
+Ref: USER.first_fav_category > TAG.tag_id
+Ref: USER.second_fav_category > TAG.tag_id
+Ref: USER.third_fav_category > TAG.tag_id
+Table INTERACTION {
+	user_id INTEGER [pk]
+	book_id INTEGER [pk]
+	is_read BOOLEAN
+	rating INTEGER
+	is_reviewed BOOLEAN
+}
+Ref: INTERACTION.user_id > USER.user_id
+Ref: INTERACTION.book_id > BOOK.book_id
+Table REVIEW {
+	review_id INTEGER [pk]
+	user_id INTEGER
+	book_id INTEGER
+	rating INTEGER
+	review_text TEXT
+	date_added DATETIME
+	started_at DATETIME
+	n_votes INTEGER
+	n_comments INTEGER
+}
+Ref: REVIEW.user_id > USER.user_id
+Ref: REVIEW.book_id > BOOK.book_id

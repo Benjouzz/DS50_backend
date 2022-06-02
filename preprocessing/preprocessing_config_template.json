@@ -1,0 +1,68 @@
+{
+	"configurations": {
+		"test": {
+			"users": 10000,
+			"books": 1000,
+			"directory": "filtered-small",
+			"review_training": 20000,
+			"server": {
+				"username": "...",
+				"password": "...",
+				"host": "...",
+				"port": 0,
+				"database": "..."
+			}
+		},
+		"release": {
+			"users": 50000,
+			"books": 30000,
+			"directory": "filtered",
+			"review_training": 50000,
+			"server": {
+				"username": "...",
+				"password": "...",
+				"host": "...",
+				"port": 0,
+				"database": "..."
+			}
+		}
+	},
+	"files": {
+		"dataset": "dataset",
+		"logs": "logs",
+		"statefile": "preprocessing_state.dat",
+		"hierarchy": {
+			"base": "category-hierarchy-base.txt",
+			"hierarchy": "category-hierarchy.json"
+		},
+		"input": {
+			"authors": "goodreads_book_authors.json",
+			"series": "goodreads_book_series.json",
+			"books": "goodreads_books.json",
+			"interactions": "goodreads_interactions.csv",
+			"reviews": "goodreads_reviews_dedup.json",
+			"usermap": "user_id_map.csv",
+			"bookmap": "book_id_map.csv"
+		},
+		"review": {
+			"reviews": "goodreads_reviews_fixed.json"
+		},
+		"tag": {
+			"tags": "goodreads_tags.csv",
+			"booktags": "goodreads_book_tags.json",
+			"association": "association.json",
+			"unassociated": "unassociated.txt"
+		},
+		"user": {
+			"users": "goodreads_users.csv"
+		},
+		"final": {
+			"authors": "goodreads_book_authors_final.json",
+			"books": "goodreads_books_final.json",
+			"interactions": "goodreads_interactions_final.csv",
+			"reviews": "goodreads_reviews_final.json",
+			"wrote": "goodreads_wrote.csv",
+			"contains": "goodreads_series_contain.csv"
+		}
+	},
+}

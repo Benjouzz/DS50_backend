@@ -5,7 +5,7 @@ import pprint
 from nltk.tag import pos_tag
 from nltk.corpus import stopwords, wordnet
 from nltk.stem import WordNetLemmatizer
-from tag_util import *
+from util.tag import *
 
 
 
