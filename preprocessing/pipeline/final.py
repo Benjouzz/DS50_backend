@@ -7,64 +7,59 @@ import time
 from util.data import read_json_rows, read_csv_rows
 
 
-def process_reviews(log, user_jsontocsv:dict, reviews_in:str, reviews_out:str):
-	log.title("Loading and fixing reviews")
+def process_interactions(log, user_jsontocsv:dict, book_csvtojson:dict, reviews_in:str, interactions_in:str, interactions_out:str):
+	log.title("Loading and merging interactions")
 	starttime = time.time()
 
+	log.section("Loading reviews")
 	book_reviews = {}
-	review_ratings = {}
-	with open(reviews_out, "w", encoding="utf-8") as outfile:
-		for rowindex, row in read_json_rows(reviews_in):
-			user_id = user_jsontocsv[row["user_id"]]
-			book_id = int(row["book_id"])
-			if book_id not in book_reviews:
-				book_reviews[book_id] = 1
-			else:
-				book_reviews[book_id] += 1
+	review_data = {}
+	for rowindex, row in read_json_rows(reviews_in):
+		user_id = user_jsontocsv[row["user_id"]]
+		book_id = int(row["book_id"])
+		if book_id not in book_reviews:
+			book_reviews[book_id] = 1
+		else:
+			book_reviews[book_id] += 1
 
-			review_ratings[(user_id, book_id)] = int(row["rating"])
+		row["user_id"] = user_id
+		row["book_id"] = book_id
+		row["review_id"] = rowindex
+		row["rating"] = int(row["rating"])
+		review_data[(user_id, book_id)] = row
 
-			row["user_id"] = user_id
-			row["book_id"] = book_id
-			row["review_id"] = rowindex
-			outfile.write(json.dumps(row) + "\n")
+		if (rowindex + 1) % 10000 == 0:
+			log.status(f"Read {len(review_data)} reviews for {len(book_reviews)} books")
+	log.print(f"Read {len(review_data)} reviews for {len(book_reviews)} books")
 
-			if (rowindex + 1) % 10000 == 0:
-				log.status(f"Read {len(review_ratings)} reviews for {len(book_reviews)} books")
-	log.print(f"Read {len(review_ratings)} reviews for {len(book_reviews)} books")
-
-	endtime = time.time()
-	log.section(f"Section accomplished in {endtime - starttime :.3f} seconds")
-	log.close()
-	return book_reviews, review_ratings
-
-def process_interactions(log, book_csvtojson:dict, review_ratings:dict, interactions_in:str, interactions_out:str):
-	log.title("Loading and fixing interactions")
-	starttime = time.time()
-
+	log.section("Merging and fixing interactions")
 	ratings_set = 0
-	non_reviewed = 0
 	incoherent = 0
 	book_ratings = {}
 	with open(interactions_out, "w", encoding="utf-8", newline="") as outfile:
-		writer = csv.DictWriter(outfile, fieldnames=["user_id", "book_id", "is_read", "rating", "is_reviewed"])
+		fieldnames = ["user_id", "book_id", "is_read", "rating", "review_text", "review_date"]
+		writer = csv.DictWriter(outfile, fieldnames=fieldnames)
 		writer.writeheader()
 		for rowindex, row in read_csv_rows(interactions_in):
 			row = {key: int(value) for key, value in row.items()}
 			user_id = row["user_id"]
 			book_id = book_csvtojson[row["book_id"]]
+			
 			key = (user_id, book_id)
-			if key in review_ratings:
-				rating = review_ratings[key]
-				if not row["is_reviewed"]:
-					row["is_reviewed"] = 1
-					non_reviewed += 1
+			if key in review_data:
+				review = review_data[key]
 				if row["rating"] == 0:
-					row["rating"] = rating
+					row["rating"] = review["rating"]
 					ratings_set += 1
-				elif row["rating"] != rating:
-					row["rating"] = rating
+				elif row["rating"] != review["rating"]:
+					row["rating"] = review["rating"]
 					incoherent += 1
+
+				row["review_text"] = review["review_text"]
+				row["review_date"] = review["date_added"]
+			else:
+				row["review_text"] = None
+				row["review_date"] = None
 
 			if row["rating"] != 0:
 				if book_id in book_ratings:
@@ -74,17 +69,17 @@ def process_interactions(log, book_csvtojson:dict, review_ratings:dict, interact
 
 			row["user_id"] = user_id
 			row["book_id"] = book_id
-			writer.writerow(row)
+			writer.writerow({field: value for field, value in row.items() if field in fieldnames})
 
 
 			if (rowindex + 1) % 10000 == 0:
-				log.status(f"Interactions updated : {ratings_set} / {rowindex+1}, {incoherent} incoherent, {non_reviewed} given as non-reviewed")
-	log.print(f"Interactions updated : {ratings_set} / {rowindex+1}, {incoherent} incoherent, {non_reviewed} given as non-reviewed")
+				log.status(f"Interactions updated : {ratings_set} / {rowindex+1}, {incoherent} incoherent")
+	log.print(f"Interactions updated : {ratings_set} / {rowindex+1}, {incoherent} incoherent")
 
 	endtime = time.time()
 	log.section(f"Section accomplished in {endtime - starttime :.3f} seconds")
 	log.close()
-	return book_ratings
+	return book_ratings, book_reviews
 
 def process_books(log, book_ratings:dict, book_reviews:dict, booktags_in:str, books_in:str, books_out:str):
 	log.title("Loading and fixing books")
@@ -210,48 +205,3 @@ def process_contains(log, series_books:dict, contains_out:str):
 	endtime = time.time()
 	log.section(f"Section accomplished in {endtime - starttime :.3f} seconds")
 	log.close()
-
-
-if __name__ == "__main__":
-	dataset_path = sys.argv[1]
-
-	books_in = os.path.join(dataset_path, "goodreads_books.json")
-	authors_in = os.path.join(dataset_path, "goodreads_book_authors.json")
-	interactions_in = os.path.join(dataset_path, "goodreads_interactions.csv")
-	reviews_in = os.path.join(dataset_path, "goodreads_reviews_fixed.json")
-	booktags_in = os.path.join(dataset_path, "goodreads_book_tags.json")
-	book_map_in = os.path.join(dataset_path, "book_id_map.csv")
-	user_map_in = os.path.join(dataset_path, "user_id_map.csv")
-
-	books_out = os.path.join(dataset_path, "goodreads_books_final.json")
-	authors_out = os.path.join(dataset_path, "goodreads_book_authors_final.json")
-	interactions_out = os.path.join(dataset_path, "goodreads_interactions_final.csv")
-	reviews_out = os.path.join(dataset_path, "goodreads_reviews_final.json")
-	wrote_out = os.path.join(dataset_path, "goodreads_wrote.csv")
-	contains_out = os.path.join(dataset_path, "goodreads_series_contains.csv")
-
-	starttime = time.time()
-
-	print("== Loading CSV maps")
-	book_jsontocsv = {}
-	book_csvtojson = {}
-	for rowindex, row in read_csv_rows(book_map_in):
-		book_jsontocsv[int(row["book_id"])] = int(row["book_id_csv"])
-		book_csvtojson[int(row["book_id_csv"])] = int(row["book_id"])
-
-	user_jsontocsv = {}
-	user_csvtojson = {}
-	for rowindex, row in read_csv_rows(user_map_in):
-		user_jsontocsv[row["user_id"]] = int(row["user_id_csv"])
-		user_csvtojson[int(row["user_id_csv"])] = row["user_id"]
-
-	book_reviews, review_ratings = process_reviews(user_jsontocsv, reviews_in, reviews_out)
-	book_ratings = process_interactions(book_csvtojson, review_ratings, interactions_in, interactions_out)
-
-	author_books, author_ratings, author_reviews, series_books = process_books(book_ratings, book_reviews, book_tags, books_in, books_out)
-	process_authors(author_ratings, author_reviews, authors_in, authors_out)
-	process_wrote(author_books, wrote_out)
-	process_contains(series_books, contains_out)
-
-	endtime = time.time()
-	print(f"== Section accomplished in {endtime - starttime :.3f} seconds")

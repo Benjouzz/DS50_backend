@@ -80,20 +80,8 @@ Table INTERACTION {
 	book_id INTEGER [pk]
 	is_read BOOLEAN
 	rating INTEGER
-	is_reviewed BOOLEAN
+	review_text TEXT
+	review_date DATETIME
 }
 Ref: INTERACTION.user_id > USER.user_id
 Ref: INTERACTION.book_id > BOOK.book_id
-Table REVIEW {
-	review_id INTEGER [pk]
-	user_id INTEGER
-	book_id INTEGER
-	rating INTEGER
-	review_text TEXT
-	date_added DATETIME
-	started_at DATETIME
-	n_votes INTEGER
-	n_comments INTEGER
-}
-Ref: REVIEW.user_id > USER.user_id
-Ref: REVIEW.book_id > BOOK.book_id

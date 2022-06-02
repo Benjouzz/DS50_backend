@@ -200,7 +200,7 @@ class TableName:
 	Author = "AUTHOR"
 	Series = "SERIES"
 	Interaction = "INTERACTION"
-	Review = "REVIEW"
+	# Review = "REVIEW"  # Merged with Interaction
 	Tag = "TAG"
 	User = "USER"
 
@@ -341,20 +341,21 @@ class InteractionTable (Table):
 
 	def columns(self):
 		return {
-			"user_id":     (Int,  True,  TableName.User),
-			"book_id":     (Int,  True,  TableName.Book),
-			"is_read":     (Bool, False, None),
-			"rating":      (Int,  False, None),
-			"is_reviewed": (Bool, False, None)}
+			"user_id":     (Int,      True,  TableName.User),
+			"book_id":     (Int,      True,  TableName.Book),
+			"is_read":     (Bool,     False, None),
+			"rating":      (Int,      False, None),
+			"review_text": (Text,     False, None),
+			"review_date": (Datetime, False, None)}
 
 	def get(self, interactions_in:str):
 		for rowindex, row in read_csv_rows(interactions_in):
 			importrow = {}
 			for colname, (type, pk, fk) in self._columns.items():
-				importrow[colname] = convert_value(row[colname], type)
+				importrow[colname] = convert_value(row[colname], type, emptyisnull=True)
 			yield (rowindex, importrow)
 
-class ReviewTable (Table):
+"""class ReviewTable (Table):
 	def columns(self):
 		return {
 			"review_id":   (Int,      True,  None),
@@ -375,7 +376,7 @@ class ReviewTable (Table):
 			yield (rowindex, importrow)
 
 	def indexes(self):
-		return {"user_id": False, "book_id": False}
+		return {"user_id": False, "book_id": False}"""
 
 class UserTable (Table):
 	def columns(self):
@@ -418,7 +419,7 @@ table_classes = {
 	TableName.Series: SeriesTable(TableName.Series),
 	TableName.Contains: ContainsTable(TableName.Contains),
 	TableName.Interaction: InteractionTable(TableName.Interaction),
-	TableName.Review: ReviewTable(TableName.Review),
+	# TableName.Review: ReviewTable(TableName.Review),  # Merged with Interaction
 	TableName.User: UserTable(TableName.User),
 }
 

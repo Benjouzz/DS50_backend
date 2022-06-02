@@ -94,7 +94,9 @@ def getDataset(NombreDeLigne = 20_000, allDatset = False):
     return df
 '''
 
-def fix_reviews(log, reviews_in, reviews_out, training_size=None):
+def fix_reviews(log, reviews_in:str, reviews_out:str, training_size=None):
+    """SUBSTEP review.reviews
+       Use sentimental analysis to complete the ratings when there is a text review but no rating"""
     log.title("Fixing the unrated reviews")
     starttime = time.time()
     # Boucle de création du modèle
@@ -102,8 +104,8 @@ def fix_reviews(log, reviews_in, reviews_out, training_size=None):
     compteurDeCreationModele = 0
     while precision_SVM < precisionMinimum:
         if compteurDeCreationModele >= max_rounds:
-            log.error(f"Modèle pas assez performant avec précision de {precision_SVM}")
-            quit()
+            log.error(f"Modèle pas assez performant après {compteurDeCreationModele}, précision de {precision_SVM :.4f} / {precisionMinimum :.4f}")
+            raise RuntimeError("Model training failed")
 
         log.subtitle("Preprocessing the training dataset")
                 
@@ -113,7 +115,7 @@ def fix_reviews(log, reviews_in, reviews_out, training_size=None):
 
         #On supprime les données inutiles
         data = data[(data['review_text'].str.len() > 3) & (data['review_text'].str.len() < 3000) & (((~ data['review_text'].str.isdigit()) & (data['review_text'].str.len() != 0)) | (data['rating'] != 0))]
-        #On remet les index en ordre
+        # On remet les index en ordre
         data = data.reset_index()
         data = data.drop(columns=["index"])
         
@@ -146,7 +148,7 @@ def fix_reviews(log, reviews_in, reviews_out, training_size=None):
                 log.status(f"Lemmatized {index+1} / {data.shape[0]} review texts")
         log.print(f"Lemmatized {index+1} / {data.shape[0]} review texts")
             
-        # Création du jeu de donnée sans les zéros
+        # Création du jeu de données sans les zéros
         datasans0 = data[data['rating'] != 0]
 
         log.subtitle("Training the model")

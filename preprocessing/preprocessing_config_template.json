@@ -60,9 +60,8 @@
 			"authors": "goodreads_book_authors_final.json",
 			"books": "goodreads_books_final.json",
 			"interactions": "goodreads_interactions_final.csv",
-			"reviews": "goodreads_reviews_final.json",
 			"wrote": "goodreads_wrote.csv",
 			"contains": "goodreads_series_contain.csv"
 		}
-	},
+	}
 }
