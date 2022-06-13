@@ -172,7 +172,7 @@ def fix_reviews(log, reviews_in:str, reviews_out:str, training_size=None):
         SVM = svm.SVC(C=1.0, kernel='linear', degree=3, gamma='auto')
         SVM.fit(Train_X_Tfidf,Train_Y)
         predictions_SVM = SVM.predict(Test_X_Tfidf)
-        
+
         precision_SVM = getAccuracyM1(Test_Y, predictions_SVM)
         log.print(f"Precision after round {compteurDeCreationModele} : {precision_SVM}")
         compteurDeCreationModele += 1  # On incrémente le conteur

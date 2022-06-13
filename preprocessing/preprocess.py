@@ -110,7 +110,7 @@ SUBSTEPS_IO = {
 							["database.processes/" + importstep.TableName.Series]),
 	"import.contains":     (["database.processes", "tablename.contains", "files.import.input.contains"],
 							["database.processes/" + importstep.TableName.Contains]),
-	"import.interaction":  (["database.processes", "tablename.interaction", "files.import.input.interactions"], 
+	"import.interaction":  (["database.processes", "tablename.interaction", "files.import.input.interactions"],
 							["database.processes/" + importstep.TableName.Interaction]),
 	# "import.review":     (["database.processes", "tablename.review", "files.import.input.reviews"],
 	# 						["database.processes/" + importstep.TableName.Review]),
@@ -129,7 +129,7 @@ DEPENDENCIES = {
 	"user.generate":       {"filter.interactions", "tag.categorize"},
 
 	# "final.reviews":     {"review.reviews"},
-	"final.interactions":  {"review.reviews", "filter.interactions"},
+	"final.interactions":  {"review.reviews"},
 	"final.books":         {"final.interactions", "tag.categorize"},
 	"final.authors":       {"final.books"},
 	"final.wrote":         {"final.books"},
@@ -361,7 +361,7 @@ def run_steps(config, log, substeps, common_information=None, pending_substeps=N
 				# Updating the pending and current substeps according to the changes
 				pending_substeps -= set(current_substeps.keys())
 				current_substeps = {step: future for step, future in current_substeps.items() if step not in finished_substeps}
-				
+
 				# Theoretically, there should be no more than a single empty round in a row
 				# If there is (here 5 because why not), it will never go forward again
 				# This is probably a dependency cycle, so stop here and save the pipeline state
