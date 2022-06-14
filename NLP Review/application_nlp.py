@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import nltk
 from nltk.tokenize import word_tokenize
 from nltk import pos_tag
 from nltk.corpus import stopwords
@@ -12,6 +13,13 @@ from sklearn import model_selection, naive_bayes, svm
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 import mysql.connector
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+
+#Create our own metrics to evaluate our models
+def getAccuracyM1(y_test, y_pred):
+    diff = abs(y_test-y_pred)
+    return (diff < 2).sum()/len(diff)
 
 precisionMinimum = 0.8
 NombreDeLigne = 20_000
@@ -19,6 +27,12 @@ precision_SVM = 0.0
 conteurDeCreationModele = 0 #Si ce conteur dépasse 5, ca veut dire que l'on n'a pas réussit à générer un modèle assez performant en 5 tour, arrêt du script.
 #On maintient l'aléatoire
 np.random.seed(500)
+
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('omw-1.4')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('stopwords')
 
 #Creation de notre propre métrique d'évaluation (tolérence +/- 1)
 def getAccuracyM1(y_test, y_pred):
@@ -40,7 +54,7 @@ def getDataset(NombreDeLigne = 20_000, allDatset = False):
                 SELECT
                     *
                 FROM
-                    REVIEW
+                    INTERACTION
                 WHERE
                     rating = {i}
                 AND
@@ -60,7 +74,7 @@ def getDataset(NombreDeLigne = 20_000, allDatset = False):
                 SELECT
                     *
                 FROM
-                    REVIEW
+                    INTERACTION
             """
         df = pd.read_sql(query, connection)
     return df
@@ -88,6 +102,7 @@ while precision_SVM < precisionMinimum:
     #On met tout en minuscule
     data['review_text'] = [entry.lower() for entry in data['review_text']]
 
+    #On tokenise
     data['review_text'] = [word_tokenize(entry) for entry in data['review_text']]
 
     tag_map = defaultdict(lambda : wn.NOUN)
@@ -96,17 +111,17 @@ while precision_SVM < precisionMinimum:
     tag_map['R'] = wn.ADV
 
     for index,entry in enumerate(data['review_text']):
-        # Declaring Empty List to store the words that follow the rules for this step
+        # On déclare une liste vide pour stocker les mots qui suivent les règles de cette étape
         Final_words = []
-        # Initializing WordNetLemmatizer()
+        # On initialise WordNetLemmatizer()
         word_Lemmatized = WordNetLemmatizer()
-        # pos_tag function below will provide the 'tag' i.e if the word is Noun(N) or Verb(V) or something else.
+        # La fonction pos_tag ci-dessous fournira le 'tag', c'est-à-dire si le mot est Nom (N) ou Verbe (V) ou autre chose.
         for word, tag in pos_tag(entry):
-            # Below condition is to check for Stop words and consider only alphabets
+            # La condition ci-dessous est de vérifier les mots vides et de ne considérer que les alphabets
             if word not in stopwords.words('english') and word.isalpha():
                 word_Final = word_Lemmatized.lemmatize(word,tag_map[tag[0]])
                 Final_words.append(word_Final)
-        # The final processed set of words for each iteration will be stored in 'text_final'
+        # L'ensemble de mots traité final pour chaque itération sera stocké dans 'text_final'
         data.loc[index,'review_text'] = str(Final_words)
         
     #création du jeu de donnée sans les zéros
@@ -134,6 +149,12 @@ while precision_SVM < precisionMinimum:
     print(f"la precision est de {precision_SVM} au tour {conteurDeCreationModele}")
     conteurDeCreationModele += 1 # On incrémente le conteur
 
+print('Score: '+str(getAccuracyM1(Test_Y, predictions_SVM)))
+cm = confusion_matrix(Test_Y, predictions_SVM)
+CM = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=[1,2,3,4,5])
+CM.plot()
+plt.grid(False)
+plt.show()
 
 #Le modèle est alors créer et il faut l'appliquer à l'ensemble du jeu de donnée
 data = getDataset(allDatset=True)
