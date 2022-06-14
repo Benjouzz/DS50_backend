@@ -7,6 +7,7 @@ import time
 from util.data import read_json_rows, read_csv_rows
 
 
+# Merge tables INTERACTION and REVIEW, fetch book and authors rating and review statistics
 def process_interactions(log, user_jsontocsv:dict, book_csvtojson:dict, reviews_in:str, interactions_in:str, interactions_out:str):
 	log.title("Loading and merging interactions")
 	starttime = time.time()
@@ -81,6 +82,7 @@ def process_interactions(log, user_jsontocsv:dict, book_csvtojson:dict, reviews_
 	log.close()
 	return book_ratings, book_reviews
 
+# Fix books ratings and reviews statistics
 def process_books(log, book_ratings:dict, book_reviews:dict, booktags_in:str, books_in:str, books_out:str):
 	log.title("Loading and fixing books")
 
@@ -142,6 +144,7 @@ def process_books(log, book_ratings:dict, book_reviews:dict, booktags_in:str, bo
 	log.close()
 	return author_books, author_ratings, author_reviews, series_books
 
+# Fix the authors ratings and reviews statistics
 def process_authors(log, author_ratings:dict, author_reviews:dict, authors_in:str, authors_out:str):
 	log.title("Loading and fixing authors")
 	starttime = time.time()
@@ -166,6 +169,7 @@ def process_authors(log, author_ratings:dict, author_reviews:dict, authors_in:st
 	log.section(f"Section accomplished in {endtime - starttime :.3f} seconds")
 	log.close()
 
+# Create an independant file for the book – author relationship
 def process_wrote(log, author_books:dict, wrote_out:str):
 	log.title("Writing author - book relationships")
 	starttime = time.time()
@@ -186,6 +190,7 @@ def process_wrote(log, author_books:dict, wrote_out:str):
 	log.section(f"Section accomplished in {endtime - starttime :.3f} seconds")
 	log.close()
 
+# Create an independant file for the book – series relationship
 def process_contains(log, series_books:dict, contains_out:str):
 	log.title("Writing series - book relationships")
 	starttime = time.time()
